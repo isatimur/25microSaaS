@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://25microsaas.com'),
+  metadataBase: new URL('https://25microsaas.vercel.app'),
   title: "25 MicroSaaS Challenge - Build Your SaaS Empire",
   description: "Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in one year. Learn, build, and grow your SaaS portfolio with our supportive community.",
   keywords: ["microSaaS", "SaaS challenge", "startup challenge", "indie hacker", "software development", "entrepreneurship"],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     description: "Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in one year. Learn, build, and grow your SaaS portfolio.",
     type: "website",
     locale: "en_US",
-    url: "https://25microsaas.com",
+    url: "https://25microsaas.vercel.app",
     siteName: "25 MicroSaaS Challenge",
     images: [{
       url: "/og-image.jpg",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
   alternates: {
-    canonical: 'https://25microsaas.com',
+    canonical: 'https://25microsaas.vercel.app',
   },
 };
 
