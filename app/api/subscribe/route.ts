@@ -1,8 +1,7 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { subscribeToNewsletter } from '@/app/actions';
 
-const prisma = new PrismaClient();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
@@ -17,25 +16,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check if email already exists
-    const existingSubscriber = await prisma.subscriber.findUnique({
-      where: { email },
-    });
-
-    if (existingSubscriber) {
-      return NextResponse.json(
-        { error: 'Email already subscribed' },
-        { status: 400 }
-      );
-    }
-
-    // Save to database
-    await prisma.subscriber.create({
-      data: {
-        email,
-        subscribedAt: new Date(),
-      },
-    });
+    // Save to database using server action
+    await subscribeToNewsletter(email);
 
     // Send welcome email
     await resend.emails.send({
@@ -56,6 +38,12 @@ export async function POST(request: Request) {
     );
   } catch (error) {
     console.error('Subscription error:', error);
+    if (error instanceof Error && error.message === 'Email already subscribed') {
+      return NextResponse.json(
+        { error: 'Email already subscribed' },
+        { status: 400 }
+      );
+    }
     return NextResponse.json(
       { error: 'Error subscribing to newsletter' },
       { status: 500 }
