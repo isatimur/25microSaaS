@@ -1,4 +1,4 @@
-import { ArrowRight, Code, Rocket, Users, Calendar, Trophy, Zap, ArrowUpRight } from 'lucide-react'
+import { ArrowRight, Code, Rocket, Users, Calendar, Trophy, Zap } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { SignUpForm } from "@/components/SignUpForm"
 import { ProjectTracker } from "@/components/ProjectTracker"
@@ -6,25 +6,14 @@ import { Countdown } from "@/components/Countdown"
 import { Newsletter } from "@/components/Newsletter"
 import { Statistics } from "@/components/Statistics"
 import { Testimonials } from "@/components/Testimonials"
-
+import { Header } from '@/components/Header'
 import { addDays, startOfDay, isBefore } from 'date-fns'
+
 
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50">
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
-        <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-blue-600">MicroSaaS Challenge</div>
-          <div className="hidden md:flex space-x-4">
-            <Button variant="ghost">About</Button>
-            <Button variant="ghost">FAQ</Button>
-            <Button variant="outline">Login</Button>
-          </div>
-          <Button variant="outline" size="icon" className="md:hidden">
-            <ArrowUpRight className="h-4 w-4" />
-          </Button>
-        </nav>
-      </header>
+      <Header />
 
       <main className="container mx-auto px-4 py-16 space-y-32">
         {/* Hero Section */}
@@ -148,7 +137,7 @@ export default function LandingPage() {
 
       <footer className="bg-gray-100 py-12 mt-32">
         <div className="container mx-auto px-4 text-center text-gray-600">
-          <p className="mb-4">&copy; 2023 MicroSaaS Challenge. All rights reserved.</p>
+          <p className="mb-4">&copy; 2025 MicroSaaS Challenge. All rights reserved.</p>
           <div className="space-x-4">
             <a href="#" className="text-blue-600 hover:underline">Terms of Service</a>
             <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>

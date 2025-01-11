@@ -1,6 +1,8 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
 
+const prisma = new PrismaClient();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
@@ -15,9 +17,29 @@ export async function POST(request: Request) {
       );
     }
 
+    // Check if email already exists
+    const existingSubscriber = await prisma.subscriber.findUnique({
+      where: { email },
+    });
+
+    if (existingSubscriber) {
+      return NextResponse.json(
+        { error: 'Email already subscribed' },
+        { status: 400 }
+      );
+    }
+
+    // Save to database
+    await prisma.subscriber.create({
+      data: {
+        email,
+        subscribedAt: new Date(),
+      },
+    });
+
     // Send welcome email
     await resend.emails.send({
-      from: 'MicroSaaS Challenge <onboarding@resend.dev>',
+      from: 'MicroSaaS Challenge <challenge@25microsaas.com>',
       to: email,
       subject: 'Welcome to the MicroSaaS Challenge!',
       html: `
@@ -27,9 +49,6 @@ export async function POST(request: Request) {
         <p>Get ready to start building your micro-SaaS empire!</p>
       `,
     });
-
-    // Here you would typically also save the email to your database
-    // await db.insert({ email, subscribedAt: new Date() }).into('subscribers');
 
     return NextResponse.json(
       { message: 'Successfully subscribed!' },
