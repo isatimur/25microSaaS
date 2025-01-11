@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 25 MicroSaaS Challenge Landing Page
+
+This is the landing page for the 25 MicroSaaS Challenge, where participants build and launch 25 micro-SaaS projects in one year.
+
+## Features
+
+- 🚀 Project Progress Tracker
+- 📊 Real-time Statistics
+- 💬 Testimonials from Participants
+- 📧 Newsletter Subscription
+- 📝 Sign Up Form
+- 🎨 Modern UI with Tailwind CSS
+- 🌐 SEO Optimized
+
+## Tech Stack
+
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- Radix UI Components
+- Geist Font
+- Vercel Hosting
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/landing25microsaas.git
+cd landing25microsaas
+```
 
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── app/                # Next.js app directory
+├── components/         # React components
+├── lib/               # Utility functions
+├── public/            # Static assets
+└── styles/            # Global styles
+```
 
-## Learn More
+## Contributing
 
-To learn more about Next.js, take a look at the following resources:
+We welcome contributions! Please feel free to submit a Pull Request.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+MIT License - feel free to use this code for your own projects.
 
-## Deploy on Vercel
+## Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Twitter: [@25microsaas](https://twitter.com/25microsaas)
+- GitHub: [25microsaas](https://github.com/25microsaas)
+- Website: [25microsaas.com](https://25microsaas.com)

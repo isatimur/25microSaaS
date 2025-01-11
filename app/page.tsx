@@ -1,101 +1,231 @@
-import Image from "next/image";
+import { ArrowRight, Code, Rocket, Users, Calendar, Trophy, Zap, ArrowUpRight } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { SignUpForm } from "@/components/SignUpForm"
+import { ProjectTracker } from "@/components/ProjectTracker"
+import { Countdown } from "@/components/Countdown"
+import { Newsletter } from "@/components/Newsletter"
+import { Statistics } from "@/components/Statistics"
+import { Testimonials } from "@/components/Testimonials"
 
-export default function Home() {
+import { addDays, startOfDay, isBefore } from 'date-fns'
+
+export default function LandingPage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50">
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="text-2xl font-bold text-blue-600">MicroSaaS Challenge</div>
+          <div className="hidden md:flex space-x-4">
+            <Button variant="ghost">About</Button>
+            <Button variant="ghost">FAQ</Button>
+            <Button variant="outline">Login</Button>
+          </div>
+          <Button variant="outline" size="icon" className="md:hidden">
+            <ArrowUpRight className="h-4 w-4" />
+          </Button>
+        </nav>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+      <main className="container mx-auto px-4 py-16 space-y-32">
+        {/* Hero Section */}
+        <section className="text-center space-y-8 animate-fade-in">
+          <h1 className="text-5xl md:text-7xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
+            25 microSaaS in 50 Weeks
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+            Transform your ideas into reality, even if you&apos;re not a full-time coder!
+          </p>
+          <div className="max-w-md mx-auto">
+            <SignUpForm />
+          </div>
+        </section>
+
+        {/* Countdown Section */}
+        <section className="text-center space-y-8 animate-slide-up">
+          <h2 className="text-4xl font-bold text-blue-600">Next Challenge Starts In</h2>
+          <NextProjectCountdown />
+        </section>
+
+        {/* Statistics Section */}
+        <Statistics />
+
+        {/* Project Tracker */}
+        <section className="animate-fade-in">
+          <ProjectTracker />
+        </section>
+
+        {/* Challenge Explanation */}
+        <section className="space-y-12 animate-slide-up">
+          <h2 className="text-4xl font-bold text-center text-blue-600">What&apos;s the Challenge?</h2>
+          <p className="text-xl text-center text-gray-600 max-w-3xl mx-auto">
+            Build 25 micro Software-as-a-Service (SaaS) projects over the course of 50 weeks.
+            Perfect for aspiring entrepreneurs, hobbyist coders, and anyone looking to boost their tech skills!
+          </p>
+          <div className="grid md:grid-cols-3 gap-8">
+            <FeatureCard
+              icon={<Code className="w-12 h-12 text-blue-500" />}
+              title="Learn by Doing"
+              description="Gain hands-on experience in coding, design, and product development."
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+            <FeatureCard
+              icon={<Rocket className="w-12 h-12 text-blue-500" />}
+              title="Launch Real Products"
+              description="Turn your ideas into live, functional microSaaS projects."
+            />
+            <FeatureCard
+              icon={<Users className="w-12 h-12 text-blue-500" />}
+              title="Join a Community"
+              description="Connect with like-minded individuals and get support along the way."
+            />
+          </div>
+        </section>
+
+        {/* Benefits Section */}
+        <section className="bg-white shadow-xl rounded-2xl p-12 space-y-8 animate-fade-in">
+          <h2 className="text-4xl font-bold text-center text-blue-600">Why Participate?</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <BenefitItem icon={<Zap className="w-6 h-6 text-blue-500" />} text="Develop a diverse portfolio of projects" />
+            <BenefitItem icon={<Code className="w-6 h-6 text-blue-500" />} text="Learn new technologies and best practices" />
+            <BenefitItem icon={<Trophy className="w-6 h-6 text-blue-500" />} text="Potentially generate passive income streams" />
+            <BenefitItem icon={<Rocket className="w-6 h-6 text-blue-500" />} text="Boost your problem-solving skills" />
+            <BenefitItem icon={<Users className="w-6 h-6 text-blue-500" />} text="Network with other aspiring SaaS creators" />
+            <BenefitItem icon={<Calendar className="w-6 h-6 text-blue-500" />} text="Get expert guidance and resources" />
+          </div>
+        </section>
+
+        {/* How it Works */}
+        <section className="space-y-12 animate-slide-up">
+          <h2 className="text-4xl font-bold text-center text-blue-600">How it Works</h2>
+          <div className="grid md:grid-cols-5 gap-8">
+            <StepItem number={1} text="Sign up for the challenge" />
+            <StepItem number={2} text="Receive bi-weekly project prompts" />
+            <StepItem number={3} text="Build your microSaaS project" />
+            <StepItem number={4} text="Share progress & get feedback" />
+            <StepItem number={5} text="Launch & move to the next one!" />
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <Testimonials />
+
+        {/* FAQ Section */}
+        <section className="space-y-12 animate-slide-up">
+          <h2 className="text-4xl font-bold text-center text-blue-600">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <FAQItem
+              question="Do I need to be an experienced programmer to participate?"
+              answer="Not at all! This challenge is designed for individuals at all skill levels, including those who are new to coding."
+            />
+            <FAQItem
+              question="How much time do I need to commit each week?"
+              answer="We recommend setting aside at least 10-15 hours per week, but you can adjust based on your schedule and goals."
+            />
+            <FAQItem
+              question="What kind of support will I receive?"
+              answer="You'll have access to a community forum, bi-weekly live Q&A sessions, and a resource library to help you along the way."
+            />
+            <FAQItem
+              question="Can I use any programming language or framework?"
+              answer="Yes, you can use any language or framework you're comfortable with. We provide resources for popular choices, but the choice is yours."
+            />
+          </div>
+        </section>
+
+        {/* Newsletter Section */}
+        <Newsletter />
+
+        {/* CTA Section */}
+        <section className="text-center bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16 rounded-2xl space-y-8 animate-fade-in">
+          <h2 className="text-5xl font-bold mb-4">Ready to Start Your Journey?</h2>
+          <p className="text-xl max-w-2xl mx-auto mb-8">
+            Join now and turn your coding hobby into a portfolio of real, working products!
+          </p>
+          <Button size="lg" variant="secondary" className="bg-white text-blue-700 hover:bg-blue-100 hover:text-blue-800 transition-colors duration-300 font-semibold text-lg px-8 py-3">
+            Start the 50-Week Challenge <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="bg-gray-100 py-12 mt-32">
+        <div className="container mx-auto px-4 text-center text-gray-600">
+          <p className="mb-4">&copy; 2023 MicroSaaS Challenge. All rights reserved.</p>
+          <div className="space-x-4">
+            <a href="#" className="text-blue-600 hover:underline">Terms of Service</a>
+            <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>
+            <a href="#" className="text-blue-600 hover:underline">Contact Us</a>
+          </div>
+        </div>
       </footer>
     </div>
-  );
+  )
 }
+
+function FeatureCard({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) {
+  return (
+    <div className="bg-white p-8 rounded-xl shadow-lg text-center transition-all hover:shadow-xl hover:-translate-y-1 duration-300">
+      <div className="flex justify-center mb-6">{icon}</div>
+      <h3 className="text-2xl font-semibold mb-4 text-blue-600">{title}</h3>
+      <p className="text-gray-600">{description}</p>
+    </div>
+  )
+}
+
+function BenefitItem({ icon, text }: { icon: React.ReactNode, text: string }) {
+  return (
+    <div className="flex items-center space-x-4 group">
+      <div className="bg-blue-100 p-2 rounded-full group-hover:bg-blue-200 transition-colors duration-300">
+        {icon}
+      </div>
+      <span className="text-lg text-gray-700 group-hover:text-blue-600 transition-colors duration-300">{text}</span>
+    </div>
+  )
+}
+
+function StepItem({ number, text }: { number: number, text: string }) {
+  return (
+    <div className="flex flex-col items-center text-center group">
+      <div className="w-16 h-16 rounded-full bg-blue-600 text-white flex items-center justify-center text-2xl font-bold mb-4 group-hover:bg-blue-700 transition-colors duration-300">
+        {number}
+      </div>
+      <p className="text-lg text-gray-700 group-hover:text-blue-600 transition-colors duration-300">{text}</p>
+    </div>
+  )
+}
+
+function FAQItem({ question, answer }: { question: string, answer: string }) {
+  return (
+    <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+      <h3 className="text-xl font-semibold mb-4 text-blue-600">{question}</h3>
+      <p className="text-gray-600">{answer}</p>
+    </div>
+  )
+}
+
+function NextProjectCountdown() {
+  const START_DATE = new Date('2025-01-14')
+  const DAYS_PER_PROJECT = 14
+  const TOTAL_PROJECTS = 25
+
+  const calculateNextProjectStart = () => {
+    const today = startOfDay(Date.now())
+    let projectStart = START_DATE
+
+    for (let i = 0; i < TOTAL_PROJECTS; i++) {
+      if (isBefore(today, projectStart)) {
+        return projectStart
+      }
+      projectStart = addDays(projectStart, DAYS_PER_PROJECT)
+    }
+
+    return null // All projects have started
+  }
+
+  const nextProjectStart = calculateNextProjectStart()
+
+  if (!nextProjectStart) {
+    return <p className="text-2xl text-gray-600">All projects have started!</p>
+  }
+
+  return <Countdown targetDate={nextProjectStart.toISOString()} />
+}
+
