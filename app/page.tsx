@@ -31,9 +31,8 @@ export default function LandingPage() {
               <SignUpForm />
             </div>
           </div>
-          <BackgroundBeams className="opacity-30">
 
-          </BackgroundBeams>
+          <BackgroundBeams/>
         </section>
 
         <div className="container  mx-auto px-10 space-y-32">

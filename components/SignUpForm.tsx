@@ -3,119 +3,39 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { useToast } from "@/components/ui/use-toast"
-import { AlertCircle, CheckCircle2 } from 'lucide-react'
-import { cn } from "@/lib/utils"
+import { Label } from "@/components/ui/label"
+import { toast } from "@/components/ui/use-toast"
 
 export function SignUpForm() {
   const [email, setEmail] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const { toast } = useToast()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
-    setError(null)
-
-    try {
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        const errorMessage = data.error || 'Failed to subscribe'
-        setError(errorMessage)
-        toast({
-          variant: "destructive",
-          title: "Sign Up Failed",
-          description: (
-            <div className="flex items-center gap-2">
-              <AlertCircle className="h-4 w-4" />
-              <span>{errorMessage}</span>
-            </div>
-          ),
-        })
-        return
-      }
-
-      toast({
-        title: "Welcome Aboard! 🚀",
-        description: (
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-brand-yellow" />
-            <span>You&apos;ve successfully joined the challenge!</span>
-          </div>
-        ),
-      })
-      setEmail('')
-      setError(null)
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Failed to sign up"
-      setError(message)
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: (
-          <div className="flex items-center gap-2">
-            <AlertCircle className="h-4 w-4" />
-            <span>{message}</span>
-          </div>
-        ),
-      })
-    } finally {
-      setIsLoading(false)
-    }
+    // Here you would typically send the email to your backend
+    console.log('Signing up:', email)
+    toast({
+      title: "Success!",
+      description: "You've been signed up for the challenge.",
+    })
+    setEmail('')
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-8 rounded-xl shadow-lg">
       <div className="space-y-2">
+        <Label htmlFor="email">Email</Label>
         <Input
+          id="email"
           type="email"
-          placeholder="Enter your email"
+          placeholder="you@example.com"
           value={email}
-          onChange={(e) => {
-            setEmail(e.target.value)
-            setError(null)
-          }}
+          onChange={(e) => setEmail(e.target.value)}
           required
-          className={cn(
-            "rounded-lg border focus:ring-2 w-full backdrop-blur-sm",
-            error 
-              ? "border-red-500/50 focus:ring-red-500/30 bg-red-500/10" 
-              : "border-white/20 focus:ring-brand-yellow/20 bg-white/10 placeholder:text-white/50 text-white"
-          )}
-          disabled={isLoading}
-          aria-invalid={error ? "true" : "false"}
-          aria-describedby={error ? "email-error" : undefined}
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        {error && (
-          <div 
-            className="flex items-center gap-2 text-red-400 text-sm pl-1" 
-            id="email-error" 
-            role="alert"
-          >
-            <AlertCircle className="h-4 w-4" />
-            <span>{error}</span>
-          </div>
-        )}
       </div>
-      <Button 
-        type="submit"
-        disabled={isLoading}
-        className={cn(
-          "w-full font-semibold transition-all duration-300",
-          isLoading
-            ? "bg-brand-yellow/80 text-brand-blue/80"
-            : "bg-brand-yellow hover:bg-brand-yellow/90 text-brand-blue"
-        )}
-      >
-        {isLoading ? "Joining..." : "Join the Challenge"}
+      <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+        Sign Up for the Challenge
       </Button>
     </form>
   )
