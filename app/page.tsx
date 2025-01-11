@@ -8,131 +8,140 @@ import { Statistics } from "@/components/Statistics"
 import { Testimonials } from "@/components/Testimonials"
 import { Header } from '@/components/Header'
 import { addDays, startOfDay, isBefore } from 'date-fns'
+import { BackgroundBeams } from "@/components/ui/background-beams"
+
 
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50">
+    <div className="min-h-screen">
       <Header />
 
-      <main className="container mx-auto px-4 py-16 space-y-32">
+      <main className="space-y-32">
         {/* Hero Section */}
-        <section className="text-center space-y-8 animate-fade-in">
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
-            25 microSaaS in 50 Weeks
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
-            Transform your ideas into reality, even if you&apos;re not a full-time coder!
-          </p>
-          <div className="max-w-md mx-auto">
-            <SignUpForm />
+        <section className="h-[40rem] w-full bg-brand-blue relative flex flex-col items-center justify-center antialiased">
+          <div className="max-w-4xl mx-auto p-4 relative z-10">
+            <h1 className="text-5xl md:text-7xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-b from-white to-brand-yellow/90 mb-8">
+              25 microSaaS in 50 Weeks
+            </h1>
+            <p className="text-xl text-white/80 max-w-2xl mx-auto text-center mb-8">
+              Transform your ideas into reality, even if you&apos;re not a full-time coder!
+            </p>
+            <div className="max-w-md mx-auto">
+              <SignUpForm />
+            </div>
           </div>
+          <BackgroundBeams className="opacity-30">
+
+          </BackgroundBeams>
         </section>
 
-        {/* Countdown Section */}
-        <section className="text-center space-y-8 animate-slide-up">
-          <h2 className="text-4xl font-bold text-blue-600">Next Challenge Starts In</h2>
-          <NextProjectCountdown />
-        </section>
+        <div className="container  mx-auto px-10 space-y-32">
+          {/* Countdown Section */}
+          <section className="text-center space-y-8 animate-slide-up">
+            <h2 className="text-4xl font-bold text-brand-blue">Next Challenge Starts In</h2>
+            <NextProjectCountdown />
+          </section>
 
-        {/* Statistics Section */}
-        <Statistics />
+          {/* Statistics Section */}
+          <Statistics />
 
-        {/* Project Tracker */}
-        <section className="animate-fade-in">
-          <ProjectTracker />
-        </section>
+          {/* Project Tracker */}
+          <section className="animate-fade-in">
+            <ProjectTracker />
+          </section>
 
-        {/* Challenge Explanation */}
-        <section className="space-y-12 animate-slide-up">
-          <h2 className="text-4xl font-bold text-center text-blue-600">What&apos;s the Challenge?</h2>
-          <p className="text-xl text-center text-gray-600 max-w-3xl mx-auto">
-            Build 25 micro Software-as-a-Service (SaaS) projects over the course of 50 weeks.
-            Perfect for aspiring entrepreneurs, hobbyist coders, and anyone looking to boost their tech skills!
-          </p>
-          <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard
-              icon={<Code className="w-12 h-12 text-blue-500" />}
-              title="Learn by Doing"
-              description="Gain hands-on experience in coding, design, and product development."
-            />
-            <FeatureCard
-              icon={<Rocket className="w-12 h-12 text-blue-500" />}
-              title="Launch Real Products"
-              description="Turn your ideas into live, functional microSaaS projects."
-            />
-            <FeatureCard
-              icon={<Users className="w-12 h-12 text-blue-500" />}
-              title="Join a Community"
-              description="Connect with like-minded individuals and get support along the way."
-            />
-          </div>
-        </section>
+          {/* Challenge Explanation */}
+          <section className="space-y-12 animate-slide-up">
+            <h2 className="text-4xl font-bold text-center text-brand-blue">What&apos;s the Challenge?</h2>
+            <p className="text-xl text-center text-brand-gray max-w-3xl mx-auto">
+              Build 25 micro Software-as-a-Service (SaaS) projects over the course of 50 weeks.
+              Perfect for aspiring entrepreneurs, hobbyist coders, and anyone looking to boost their tech skills!
+            </p>
+            <div className="grid md:grid-cols-3 gap-8">
+              <FeatureCard
+                icon={<Code className="w-12 h-12 text-blue-500" />}
+                title="Learn by Doing"
+                description="Gain hands-on experience in coding, design, and product development."
+              />
+              <FeatureCard
+                icon={<Rocket className="w-12 h-12 text-blue-500" />}
+                title="Launch Real Products"
+                description="Turn your ideas into live, functional microSaaS projects."
+              />
+              <FeatureCard
+                icon={<Users className="w-12 h-12 text-blue-500" />}
+                title="Join a Community"
+                description="Connect with like-minded individuals and get support along the way."
+              />
+            </div>
+          </section>
 
-        {/* Benefits Section */}
-        <section className="bg-white shadow-xl rounded-2xl p-12 space-y-8 animate-fade-in">
-          <h2 className="text-4xl font-bold text-center text-blue-600">Why Participate?</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <BenefitItem icon={<Zap className="w-6 h-6 text-blue-500" />} text="Develop a diverse portfolio of projects" />
-            <BenefitItem icon={<Code className="w-6 h-6 text-blue-500" />} text="Learn new technologies and best practices" />
-            <BenefitItem icon={<Trophy className="w-6 h-6 text-blue-500" />} text="Potentially generate passive income streams" />
-            <BenefitItem icon={<Rocket className="w-6 h-6 text-blue-500" />} text="Boost your problem-solving skills" />
-            <BenefitItem icon={<Users className="w-6 h-6 text-blue-500" />} text="Network with other aspiring SaaS creators" />
-            <BenefitItem icon={<Calendar className="w-6 h-6 text-blue-500" />} text="Get expert guidance and resources" />
-          </div>
-        </section>
+          {/* Benefits Section */}
+          <section className="bg-white shadow-xl rounded-2xl p-12 space-y-8 animate-fade-in">
+            <h2 className="text-4xl font-bold text-center text-brand-blue">Why Participate?</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <BenefitItem icon={<Zap className="w-6 h-6 text-blue-500" />} text="Develop a diverse portfolio of projects" />
+              <BenefitItem icon={<Code className="w-6 h-6 text-blue-500" />} text="Learn new technologies and best practices" />
+              <BenefitItem icon={<Trophy className="w-6 h-6 text-blue-500" />} text="Potentially generate passive income streams" />
+              <BenefitItem icon={<Rocket className="w-6 h-6 text-blue-500" />} text="Boost your problem-solving skills" />
+              <BenefitItem icon={<Users className="w-6 h-6 text-blue-500" />} text="Network with other aspiring SaaS creators" />
+              <BenefitItem icon={<Calendar className="w-6 h-6 text-blue-500" />} text="Get expert guidance and resources" />
+            </div>
+          </section>
 
-        {/* How it Works */}
-        <section className="space-y-12 animate-slide-up">
-          <h2 className="text-4xl font-bold text-center text-blue-600">How it Works</h2>
-          <div className="grid md:grid-cols-5 gap-8">
-            <StepItem number={1} text="Sign up for the challenge" />
-            <StepItem number={2} text="Receive bi-weekly project prompts" />
-            <StepItem number={3} text="Build your microSaaS project" />
-            <StepItem number={4} text="Share progress & get feedback" />
-            <StepItem number={5} text="Launch & move to the next one!" />
-          </div>
-        </section>
+          {/* How it Works */}
+          <section className="space-y-12 animate-slide-up">
+            <h2 className="text-4xl font-bold text-center text-brand-blue">How it Works</h2>
+            <div className="grid md:grid-cols-5 gap-8">
+              <StepItem number={1} text="Sign up for the challenge" />
+              <StepItem number={2} text="Receive bi-weekly project prompts" />
+              <StepItem number={3} text="Build your microSaaS project" />
+              <StepItem number={4} text="Share progress & get feedback" />
+              <StepItem number={5} text="Launch & move to the next one!" />
+            </div>
+          </section>
 
-        {/* Testimonials */}
-        <Testimonials />
+          {/* Testimonials */}
+          <Testimonials />
 
-        {/* FAQ Section */}
-        <section className="space-y-12 animate-slide-up">
-          <h2 className="text-4xl font-bold text-center text-blue-600">Frequently Asked Questions</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <FAQItem
-              question="Do I need to be an experienced programmer to participate?"
-              answer="Not at all! This challenge is designed for individuals at all skill levels, including those who are new to coding."
-            />
-            <FAQItem
-              question="How much time do I need to commit each week?"
-              answer="We recommend setting aside at least 10-15 hours per week, but you can adjust based on your schedule and goals."
-            />
-            <FAQItem
-              question="What kind of support will I receive?"
-              answer="You'll have access to a community forum, bi-weekly live Q&A sessions, and a resource library to help you along the way."
-            />
-            <FAQItem
-              question="Can I use any programming language or framework?"
-              answer="Yes, you can use any language or framework you're comfortable with. We provide resources for popular choices, but the choice is yours."
-            />
-          </div>
-        </section>
+          {/* FAQ Section */}
+          <section className="space-y-12 animate-slide-up">
+            <h2 className="text-4xl font-bold text-center text-brand-blue">Frequently Asked Questions</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <FAQItem
+                question="Do I need to be an experienced programmer to participate?"
+                answer="Not at all! This challenge is designed for individuals at all skill levels, including those who are new to coding."
+              />
+              <FAQItem
+                question="How much time do I need to commit each week?"
+                answer="We recommend setting aside at least 10-15 hours per week, but you can adjust based on your schedule and goals."
+              />
+              <FAQItem
+                question="What kind of support will I receive?"
+                answer="You'll have access to a community forum, bi-weekly live Q&A sessions, and a resource library to help you along the way."
+              />
+              <FAQItem
+                question="Can I use any programming language or framework?"
+                answer="Yes, you can use any language or framework you're comfortable with. We provide resources for popular choices, but the choice is yours."
+              />
+            </div>
+          </section>
 
-        {/* Newsletter Section */}
-        <Newsletter />
+          {/* Newsletter Section */}
+          <Newsletter />
 
-        {/* CTA Section */}
-        <section className="text-center bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16 rounded-2xl space-y-8 animate-fade-in">
-          <h2 className="text-5xl font-bold mb-4">Ready to Start Your Journey?</h2>
-          <p className="text-xl max-w-2xl mx-auto mb-8">
-            Join now and turn your coding hobby into a portfolio of real, working products!
-          </p>
-          <Button size="lg" variant="secondary" className="bg-white text-blue-700 hover:bg-blue-100 hover:text-blue-800 transition-colors duration-300 font-semibold text-lg px-8 py-3">
-            Start the 50-Week Challenge <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
-        </section>
+          {/* CTA Section */}
+          <section className="text-center bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16 rounded-2xl space-y-8 animate-fade-in">
+            <h2 className="text-5xl font-bold mb-4">Ready to Start Your Journey?</h2>
+            <p className="text-xl max-w-2xl mx-auto mb-8">
+              Join now and turn your coding hobby into a portfolio of real, working products!
+            </p>
+            <Button size="lg" variant="secondary" className="bg-white text-blue-700 hover:bg-blue-100 hover:text-blue-800 transition-colors duration-300 font-semibold text-lg px-8 py-3">
+              Start the 50-Week Challenge <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </section>
+        </div>
       </main>
 
       <footer className="bg-gray-100 py-12 mt-32">

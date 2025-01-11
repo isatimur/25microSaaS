@@ -46,7 +46,7 @@ export function Newsletter() {
         title: "Successfully Subscribed!",
         description: (
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-green-500" />
+            <CheckCircle2 className="h-4 w-4 text-secondary" />
             <span>You&apos;ve been subscribed to our newsletter.</span>
           </div>
         ),
@@ -72,9 +72,9 @@ export function Newsletter() {
   }
 
   return (
-    <section className="bg-blue-50 p-12 rounded-2xl space-y-8">
-      <h2 className="text-4xl font-bold text-center text-blue-600">Stay Updated</h2>
-      <p className="text-xl text-center text-gray-600 max-w-2xl mx-auto">
+    <section className="bg-primary/5 p-12 rounded-2xl space-y-8 border border-primary/10 shadow-lg">
+      <h2 className="text-4xl font-bold text-center text-primary">Stay Updated</h2>
+      <p className="text-xl text-center text-brand-gray max-w-2xl mx-auto">
         Get the latest news, tips, and resources for the MicroSaaS Challenge delivered straight to your inbox.
       </p>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
@@ -88,7 +88,7 @@ export function Newsletter() {
               setError(null)
             }}
             required
-            className={`flex-grow ${error ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
+            className={`flex-grow bg-white/80 backdrop-blur-sm ${error ? 'border-destructive focus-visible:ring-destructive' : 'focus-visible:ring-primary/20 border-primary/10'}`}
             disabled={isLoading}
             aria-invalid={error ? "true" : "false"}
             aria-describedby={error ? "email-error" : undefined}
@@ -96,14 +96,14 @@ export function Newsletter() {
           <Button 
             type="submit" 
             disabled={isLoading}
-            className="min-w-[120px]"
+            className="min-w-[120px] bg-secondary hover:bg-secondary/90 text-secondary-foreground"
           >
             {isLoading ? "Subscribing..." : "Subscribe"}
           </Button>
         </div>
         {error && (
           <div 
-            className="flex items-center gap-2 text-red-600 text-sm" 
+            className="flex items-center gap-2 text-destructive text-sm" 
             id="email-error" 
             role="alert"
           >
