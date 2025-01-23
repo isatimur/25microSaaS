@@ -18,8 +18,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://25microsaas.vercel.app'),
-  title: "25 MicroSaaS Challenge - Build Your SaaS Empire",
-  description: "Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in one year. Learn, build, and grow your SaaS portfolio with our supportive community.",
+  title: '25 MicroSaaS Challenge - Build Your SaaS Empire',
+  description: 'Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in 50 weeks. Learn, build, and grow with our supportive community.',
   keywords: ["microSaaS", "SaaS challenge", "startup challenge", "indie hacker", "software development", "entrepreneurship"],
   authors: [{ name: "25 MicroSaaS Team" }],
   openGraph: {

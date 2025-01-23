@@ -1,4 +1,6 @@
-import { ArrowRight, Code, Rocket, Users, Calendar, Trophy, Zap } from 'lucide-react'
+"use client";
+
+import { ArrowRight, Code, Rocket, Users, Calendar, Trophy, Zap, Chrome } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { SignUpForm } from "@/components/SignUpForm"
 import { ProjectTracker } from "@/components/ProjectTracker"
@@ -9,8 +11,8 @@ import { Testimonials } from "@/components/Testimonials"
 import { Header } from '@/components/Header'
 import { addDays, startOfDay, isBefore } from 'date-fns'
 import { BackgroundBeams } from "@/components/ui/background-beams"
-
-
+import Link from "next/link"
+import Image from "next/image"
 
 export default function LandingPage() {
   return (
@@ -128,7 +130,21 @@ export default function LandingPage() {
           </section>
 
           {/* Newsletter Section */}
-          <Newsletter />
+          <section className="py-20 px-4">
+            <div className="container mx-auto">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-brand-blue">
+                  Follow Our Journey
+                </h2>
+                <p className="text-xl text-center text-neutral-400 mb-8">
+                  Get updates on new projects, behind-the-scenes insights, and early access to launches.
+                </p>
+                <div className="mt-8">
+                  <Newsletter />
+                </div>
+              </div>
+            </div>
+          </section>
 
           {/* CTA Section */}
           <section className="text-center bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16 rounded-2xl space-y-8 animate-fade-in">
@@ -139,6 +155,47 @@ export default function LandingPage() {
             <Button size="lg" variant="secondary" className="bg-white text-blue-700 hover:bg-blue-100 hover:text-blue-800 transition-colors duration-300 font-semibold text-lg px-8 py-3">
               Start the 50-Week Challenge <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
+          </section>
+
+          {/* Projects Section */}
+          <section className="py-20 px-4">
+            <div className="container mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-gradient">
+                Latest Projects
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <Link 
+                  href="/projects/daily-affirmations"
+                  className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950 hover:bg-neutral-900/80 transition-colors"
+                >
+                  <div className="relative h-48">
+                    <Image
+                      src="/palm-leaf.png"
+                      alt="Daily Affirmations Chrome Extension"
+                      fill
+                      className="object-cover object-center"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="text-brand-yellow">Project #1</span>
+                      <span className="text-neutral-400">Chrome Extension</span>
+                    </div>
+                    <h3 className="text-xl font-semibold mb-2 text-neutral-50 group-hover:text-gradient transition-colors">
+                      Daily Affirmations
+                    </h3>
+                    <p className="text-neutral-400">
+                      Transform your new tab into a daily source of inspiration with beautiful affirmations and customizable themes.
+                    </p>
+                    <div className="mt-4 flex items-center text-sm text-neutral-400">
+                      <Chrome className="w-4 h-4 mr-2" />
+                      <span>Chrome Extension</span>
+                      <ArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            </div>
           </section>
         </div>
       </main>
