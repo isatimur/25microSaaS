@@ -3,7 +3,7 @@
 import { Header } from "@/components/Header";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Newsletter } from "@/components/Newsletter";
-import { ArrowRight, Github, Twitter } from "lucide-react";
+import { Github, Twitter } from "lucide-react";
 
 export default function AboutPage() {
   return (

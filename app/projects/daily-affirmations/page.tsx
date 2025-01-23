@@ -186,7 +186,7 @@ export default function DailyAffirmationsPage() {
                         <div className="max-w-4xl mx-auto prose prose-invert">
                             <p className="text-lg text-neutral-300">
                                 The Daily Affirmations Chrome extension was developed as the first project in our 25 MicroSaaS challenge.
-                                Built with modern web technologies and following Chrome's latest Manifest V3 guidelines, it demonstrates
+                                Built with modern web technologies and following Chrome&apos;s latest Manifest V3 guidelines, it demonstrates
                                 how a simple idea can be transformed into a polished product.
                             </p>
                             <h3 className="text-xl font-semibold mt-8 mb-4">Key Learnings</h3>
