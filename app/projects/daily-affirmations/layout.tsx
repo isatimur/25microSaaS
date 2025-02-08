@@ -17,32 +17,30 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://25microsaas.com'),
-  title: '25 MicroSaaS Challenge - Build Your SaaS Empire',
-  description: 'Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in 50 weeks. Our first project, Daily Affirmations Chrome Extension, is now live!',
-  keywords: ["microSaaS", "SaaS challenge", "startup challenge", "indie hacker", "software development", "entrepreneurship", "chrome extension", "daily affirmations"],
-  authors: [{ name: "25 MicroSaaS Team" }],
+  metadataBase: new URL('https://25microsaas.com/projects/daily-affirmations'),
+  title: 'Daily Affirmations Chrome Extension - 25 MicroSaaS Challenge',
+  description: 'Boost your daily motivation with our Chrome Extension featuring beautiful affirmations, weather widgets, and customizable themes. Part of the 25 MicroSaaS Challenge.',
+  keywords: [
+    "daily affirmations chrome extension",
+    "productivity chrome extension",
+    "motivational new tab",
+    "microsaas projects",
+    "chrome extension development",
+    "positive mindset tool"
+  ],
   openGraph: {
-    title: "25 MicroSaaS Challenge - Build Your SaaS Empire",
-    description: "Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in 50 weeks. Our first project, Daily Affirmations Chrome Extension, is now live!",
-    type: "website",
-    locale: "en_US",
-    url: "https://25microsaas.com",
-    siteName: "25 MicroSaaS Challenge",
+    title: "Daily Affirmations - Transform Your New Tab Experience",
+    description: "Install our Chrome Extension for daily inspiration with beautiful affirmations and customizable widgets. Join 25 MicroSaaS Challenge projects.",
     images: [{
-      url: "/og-image.jpg",
-      width: 1200,
-      height: 630,
-      alt: "25 MicroSaaS Challenge",
-    }],
+      url: "/daily-affirmations-og.jpg",
+      alt: "Daily Affirmations Chrome Extension Preview",
+    }]
   },
   twitter: {
-    card: "summary_large_image",
-    title: "25 MicroSaaS Challenge - Build Your SaaS Empire",
-    description: "Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in 50 weeks. First project: Daily Affirmations Chrome Extension!",
+    card: "app",
     site: "@25microsaas",
-    creator: "@25microsaas",
-    images: ["/og-image.jpg"],
+    title: "New Tab Motivation - Daily Affirmations Chrome Extension",
+    description: "Install our free Chrome Extension for beautiful daily affirmations and productivity tools #microsaas"
   },
   robots: {
     index: true,
@@ -59,7 +57,7 @@ export const metadata: Metadata = {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
   alternates: {
-    canonical: 'https://25microsaas.com',
+    canonical: 'https://25microsaas.com/projects/daily-affirmations',
   },
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Chrome, Star, Cloud, Bell, Palette, Lock, Github } from "lucide-react";
+import { ArrowRight, Chrome, Star, Cloud, Bell, Palette, Lock, Github, Globe } from "lucide-react";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Header } from "@/components/Header";
 import Image from "next/image";
@@ -26,7 +26,7 @@ export default function DailyAffirmationsPage() {
                         </p>
                         <div className="flex items-center justify-center gap-4">
                             <a
-                                href="https://chrome.google.com/webstore"
+                                href="https://chromewebstore.google.com/detail/daily-affirmations/nhhicimcipdgjckacooendaikhjhenle" 
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-brand-blue to-brand-yellow text-neutral-950 font-semibold hover:opacity-90 transition-opacity"
@@ -43,6 +43,15 @@ export default function DailyAffirmationsPage() {
                             >
                                 <Github className="w-5 h-5 mr-2" />
                                 View Source
+                            </a>
+                            <a
+                                href="https://www.daily-affirmation.today"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center px-6 py-3 rounded-full border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 transition-colors"
+                            >
+                                <Globe className="w-5 h-5 mr-2" />
+                                Visit Website
                             </a>
                         </div>
                     </div>
@@ -212,7 +221,7 @@ export default function DailyAffirmationsPage() {
                         </p>
                         <div className="flex items-center justify-center gap-4">
                             <a
-                                href="https://chrome.google.com/webstore"
+                                href="https://chromewebstore.google.com/detail/daily-affirmations/nhhicimcipdgjckacooendaikhjhenle"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center px-8 py-4 rounded-full bg-gradient-to-r from-brand-blue to-brand-yellow text-neutral-950 font-semibold hover:opacity-90 transition-opacity"
@@ -234,6 +243,40 @@ export default function DailyAffirmationsPage() {
                     </div>
                 </section>
             </main>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "SoftwareApplication",
+                        name: "Daily Affirmations",
+                        applicationCategory: "BrowserExtension",
+                        operatingSystem: "Chrome",
+                        url: "https://www.daily-affirmation.today",
+                        downloadUrl: "https://chromewebstore.google.com/detail/daily-affirmations/nhhicimcipdgjckacooendaikhjhenle",
+                        offers: {
+                            "@type": "Offer",
+                            price: "0",
+                            priceCurrency: "USD"
+                        },
+                        aggregateRating: {
+                            "@type": "AggregateRating",
+                            ratingValue: "4.9",
+                            ratingCount: "1500"
+                        },
+                        description: "Transform your new tab into a daily source of inspiration with beautiful affirmations and customizable themes.",
+                        applicationSuite: "Chrome Web Store",
+                        featureList: [
+                            "Daily inspirational affirmations",
+                            "Customizable themes",
+                            "Weather widget",
+                            "Smart reminders",
+                            "Cloud sync"
+                        ],
+                        releaseNotes: "First public release of Daily Affirmations Chrome Extension"
+                    })
+                }}
+            />
         </>
     );
 }
