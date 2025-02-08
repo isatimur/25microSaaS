@@ -10,6 +10,7 @@ const geistSans = localFont({
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -23,14 +24,14 @@ export const metadata: Metadata = {
   keywords: ["microSaaS", "SaaS challenge", "startup challenge", "indie hacker", "software development", "entrepreneurship", "chrome extension", "daily affirmations"],
   authors: [{ name: "25 MicroSaaS Team" }],
   openGraph: {
-    title: "25 MicroSaaS Challenge - Build Your SaaS Empire",
-    description: "Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in 50 weeks. Our first project, Daily Affirmations Chrome Extension, is now live!",
     type: "website",
     locale: "en_US",
     url: "https://25microsaas.com",
+    title: "25 MicroSaaS Challenge - Build Your SaaS Empire",
+    description: "Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in 50 weeks. Our first project, Daily Affirmations Chrome Extension, is now live!",
     siteName: "25 MicroSaaS Challenge",
     images: [{
-      url: "/og-image.jpg",
+      url: "/palm-leaf.png",
       width: 1200,
       height: 630,
       alt: "25 MicroSaaS Challenge",
@@ -38,11 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "25 MicroSaaS Challenge - Build Your SaaS Empire",
-    description: "Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in 50 weeks. First project: Daily Affirmations Chrome Extension!",
-    site: "@25microsaas",
-    creator: "@25microsaas",
-    images: ["/og-image.jpg"],
+    title: "25 MicroSaaS Challenge",
+    description: "Join the 25 MicroSaaS Challenge and build 25 micro-SaaS projects in 50 weeks!",
+    images: ["/palm-leaf.png"],
   },
   robots: {
     index: true,
@@ -69,8 +68,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="antialiased">
+        {children}
+        <Toaster />
+        <Analytics />
         <Script
           strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
@@ -89,11 +91,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
-        <Toaster />
-        <Analytics />
       </body>
     </html>
   );
