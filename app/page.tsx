@@ -7,7 +7,6 @@ import { ProjectTracker } from "@/components/ProjectTracker"
 import { Countdown } from "@/components/Countdown"
 import { Newsletter } from "@/components/Newsletter"
 import { Statistics } from "@/components/Statistics"
-import { Testimonials } from "@/components/Testimonials"
 import { Header } from '@/components/Header'
 import { addDays, startOfDay, isBefore } from 'date-fns'
 import { BackgroundBeams } from "@/components/ui/background-beams"
@@ -37,7 +36,7 @@ export default function LandingPage() {
           <BackgroundBeams/>
         </section>
 
-        <div className="container  mx-auto px-10 space-y-32">
+        <div className="container mx-auto px-10 space-y-32">
           {/* Countdown Section */}
           <section className="text-center space-y-8 animate-slide-up">
             <h2 className="text-4xl font-bold text-brand-blue">Next Challenge Starts In</h2>
@@ -103,9 +102,6 @@ export default function LandingPage() {
             </div>
           </section>
 
-          {/* Testimonials */}
-          <Testimonials />
-
           {/* FAQ Section */}
           <section className="space-y-12 animate-slide-up">
             <h2 className="text-4xl font-bold text-center text-brand-blue">Frequently Asked Questions</h2>
@@ -144,17 +140,6 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-          </section>
-
-          {/* CTA Section */}
-          <section className="text-center bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16 rounded-2xl space-y-8 animate-fade-in">
-            <h2 className="text-5xl font-bold mb-4">Ready to Start Your Journey?</h2>
-            <p className="text-xl max-w-2xl mx-auto mb-8">
-              Join now and turn your coding hobby into a portfolio of real, working products!
-            </p>
-            <Button size="lg" variant="secondary" className="bg-white text-blue-700 hover:bg-blue-100 hover:text-blue-800 transition-colors duration-300 font-semibold text-lg px-8 py-3">
-              Start the 50-Week Challenge <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
           </section>
 
           {/* Projects Section */}
@@ -196,6 +181,17 @@ export default function LandingPage() {
                 </Link>
               </div>
             </div>
+          </section>
+
+          {/* CTA Section */}
+          <section className="text-center bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16 rounded-2xl space-y-8 animate-fade-in">
+            <h2 className="text-5xl font-bold mb-4">Ready to Start Your Journey?</h2>
+            <p className="text-xl max-w-2xl mx-auto mb-8">
+              Join now and turn your coding hobby into a portfolio of real, working products!
+            </p>
+            <Button size="lg" variant="secondary" className="bg-white text-blue-700 hover:bg-blue-100 hover:text-blue-800 transition-colors duration-300 font-semibold text-lg px-8 py-3">
+              Start the 50-Week Challenge <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
           </section>
         </div>
       </main>
