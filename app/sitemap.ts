@@ -27,6 +27,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
+            url: 'https://25microsaas.com/projects/ai-content-generator',
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://25microsaas.com/projects/niche-community-forum-builder',
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
             url: 'https://www.daily-affirmation.today',
             lastModified: new Date(),
             changeFrequency: 'daily',
