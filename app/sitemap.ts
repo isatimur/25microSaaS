@@ -39,6 +39,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.8,
         },
         {
+            url: 'https://25microsaas.com/projects/personalized-habit-tracker',
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://25microsaas.com/projects/subscription-box-discovery',
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://25microsaas.com/projects/local-event-aggregator',
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://25microsaas.com/projects/ai-resume-builder',
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
             url: 'https://www.daily-affirmation.today',
             lastModified: new Date(),
             changeFrequency: 'daily',
