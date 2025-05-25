@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { Star, MapPin, Search, CalendarDays, Users, Mail, Newspaper, Megaphone, Building, Heart, CalendarSearch, MailOpen } from "lucide-react"; // Removed ArrowRight, Cloud, Bell, Palette, Lock as they are unused.
@@ -214,7 +215,6 @@ export default function DailyAffirmationsPage() {
                     </div>
                 </section>
             </main>
-            {/* eslint-disable react/no-unescaped-entities */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -236,7 +236,6 @@ export default function DailyAffirmationsPage() {
                     })
                 }}
             />
-            {/* eslint-enable react/no-unescaped-entities */}
         </>
     );
 }
