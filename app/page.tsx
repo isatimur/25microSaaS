@@ -13,6 +13,146 @@ import { BackgroundBeams } from "@/components/ui/background-beams"
 import Link from "next/link"
 import Image from "next/image"
 
+const projectsData = [
+  // Known Projects
+  {
+    id: 'daily-affirmations',
+    number: 1,
+    title: 'Daily Affirmations',
+    description: 'Transform your new tab into a daily source of inspiration with beautiful affirmations and customizable themes.',
+    imageUrl: '/palm-leaf.png',
+    projectPageUrl: '/projects/daily-affirmations',
+    type: 'Chrome Extension'
+  },
+  {
+    id: 'ai-story-generator-kids',
+    number: 2,
+    title: 'AI Story Generator for Kids',
+    description: 'Create magical bedtime stories with AI assistance.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/ai-story-generator-kids',
+    type: 'Web App'
+  },
+  {
+    id: 'local-event-aggregator',
+    number: 3,
+    title: 'Local Event Aggregator',
+    description: 'Discover events happening in your city.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/local-event-aggregator',
+    type: 'Web App'
+  },
+  {
+    id: 'niche-course-platform-builder',
+    number: 4,
+    title: 'Niche Course Platform Builder',
+    description: 'Build and sell your own online courses easily.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/niche-course-platform-builder',
+    type: 'Web App'
+  },
+  {
+    id: 'smart-plant-care-assistant',
+    number: 5,
+    title: 'Smart Plant Care Assistant',
+    description: 'Get AI-powered advice for your plants.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/smart-plant-care-assistant',
+    type: 'Web App'
+  },
+  // Placeholder Projects
+  {
+    id: 'project-6',
+    number: 6,
+    title: 'Project Title 6',
+    description: 'Description for project 6.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/project-6',
+    type: 'Web App'
+  },
+  {
+    id: 'project-7',
+    number: 7,
+    title: 'Project Title 7',
+    description: 'Description for project 7.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/project-7',
+    type: 'Mobile App'
+  },
+  {
+    id: 'project-8',
+    number: 8,
+    title: 'Project Title 8',
+    description: 'Description for project 8.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/project-8',
+    type: 'SaaS Tool'
+  },
+  {
+    id: 'project-9',
+    number: 9,
+    title: 'Project Title 9',
+    description: 'Description for project 9.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/project-9',
+    type: 'Web App'
+  },
+  {
+    id: 'project-10',
+    number: 10,
+    title: 'Project Title 10',
+    description: 'Description for project 10.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/project-10',
+    type: 'Mobile App'
+  },
+  {
+    id: 'project-11',
+    number: 11,
+    title: 'Project Title 11',
+    description: 'Description for project 11.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/project-11',
+    type: 'SaaS Tool'
+  },
+  {
+    id: 'project-12',
+    number: 12,
+    title: 'Project Title 12',
+    description: 'Description for project 12.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/project-12',
+    type: 'Web App'
+  },
+  {
+    id: 'project-13',
+    number: 13,
+    title: 'Project Title 13',
+    description: 'Description for project 13.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/project-13',
+    type: 'Mobile App'
+  },
+  {
+    id: 'project-14',
+    number: 14,
+    title: 'Project Title 14',
+    description: 'Description for project 14.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/project-14',
+    type: 'SaaS Tool'
+  },
+  {
+    id: 'project-15',
+    number: 15,
+    title: 'Project Title 15',
+    description: 'Description for project 15.',
+    imageUrl: '/placeholder-project.png',
+    projectPageUrl: '/projects/project-15',
+    type: 'Web App'
+  }
+];
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen">
@@ -149,36 +289,39 @@ export default function LandingPage() {
                 Latest Projects
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <Link 
-                  href="/projects/daily-affirmations"
-                  className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950 hover:bg-neutral-900/80 transition-colors"
-                >
-                  <div className="relative h-48">
-                    <Image
-                      src="/palm-leaf.png"
-                      alt="Daily Affirmations Chrome Extension"
-                      fill
-                      className="object-cover object-center"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="text-brand-yellow">Project #1</span>
-                      <span className="text-neutral-400">Chrome Extension</span>
+                {projectsData.map((project) => (
+                  <Link 
+                    key={project.id}
+                    href={project.projectPageUrl}
+                    className="group relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-950 hover:bg-neutral-900/80 transition-colors"
+                  >
+                    <div className="relative h-48">
+                      <Image
+                        src={project.imageUrl}
+                        alt={project.title}
+                        fill
+                        className="object-cover object-center"
+                      />
                     </div>
-                    <h3 className="text-xl font-semibold mb-2 text-neutral-50 group-hover:text-gradient transition-colors">
-                      Daily Affirmations
-                    </h3>
-                    <p className="text-neutral-400">
-                      Transform your new tab into a daily source of inspiration with beautiful affirmations and customizable themes.
-                    </p>
-                    <div className="mt-4 flex items-center text-sm text-neutral-400">
-                      <Chrome className="w-4 h-4 mr-2" />
-                      <span>Chrome Extension</span>
-                      <ArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform" />
+                    <div className="p-6">
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="text-brand-yellow">Project #{project.number}</span>
+                        <span className="text-neutral-400">{project.type}</span>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 text-neutral-50 group-hover:text-gradient transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-neutral-400">
+                        {project.description}
+                      </p>
+                      <div className="mt-4 flex items-center text-sm text-neutral-400">
+                        {project.type === 'Chrome Extension' ? <Chrome className="w-4 h-4 mr-2" /> : <Zap className="w-4 h-4 mr-2" />}
+                        <span>{project.type}</span>
+                        <ArrowRight className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
-                  </div>
-                </Link>
+                  </Link>
+                ))}
               </div>
             </div>
           </section>
