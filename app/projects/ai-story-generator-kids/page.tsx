@@ -176,7 +176,7 @@ export default function DailyAffirmationsPage() {
                             <ul className="space-y-2">
                                 <li>Prompt engineering for creative and coherent AI text generation</li>
                                 <li>Designing for a young audience (UI/UX)</li>
-                                <li>Content filtering and safety for AI-generated kid's content</li>
+                                <li>Content filtering and safety for AI-generated kid&apos;s content</li>
                                 <li>Managing costs of LLM API calls for a freemium product</li>
                                 <li>Potential for AI image generation integration</li>
                             </ul>
@@ -188,10 +188,10 @@ export default function DailyAffirmationsPage() {
                 <section className="py-20 px-4">
                     <div className="container mx-auto text-center">
                         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gradient">
-                            Ready to Write Your Child's Next Favorite Story?
+                            Ready to Write Your Child&apos;s Next Favorite Story?
                         </h2>
                         <p className="text-xl text-neutral-200 max-w-2xl mx-auto mb-12">
-                            Start the adventure today and watch your child's imagination soar with a story made just for them.
+                            Start the adventure today and watch your child&apos;s imagination soar with a story made just for them.
                         </p>
                         <div className="flex items-center justify-center gap-4">
                             <a
@@ -238,7 +238,7 @@ export default function DailyAffirmationsPage() {
                         },
                         description: "Unlock a world of imagination! Create unique, AI-generated stories for your child by choosing their name, favorite things, and a special theme.",
                         featureList: [
-                            "Personalized Characters (child's name, friends)",
+                            "Personalized Characters (child&apos;s name, friends)",
                             "Choose Interests & Themes (dinosaurs, space, magic, etc.)",
                             "Unique AI-Generated Content for each story",
                             "Age-Appropriate Language",

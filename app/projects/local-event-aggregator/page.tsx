@@ -19,10 +19,10 @@ export default function DailyAffirmationsPage() {
                             <span className="text-neutral-400">Community Platform</span>
                         </div>
                         <h1 className="text-4xl md:text-6xl font-bold mb-8 text-gradient">
-                            Your City's Event Hub
+                            Your City&apos;s Event Hub
                         </h1>
                         <p className="text-xl md:text-2xl text-neutral-200 max-w-3xl mx-auto mb-8">
-                            Discover the best local events, from concerts and workshops to meetups and markets. Never miss out on what's happening in your area!
+                            Discover the best local events, from concerts and workshops to meetups and markets. Never miss out on what&apos;s happening in your area!
                         </p>
                         <div className="flex items-center justify-center gap-4">
                             <a
@@ -77,7 +77,7 @@ export default function DailyAffirmationsPage() {
                                 {
                                     icon: Mail,
                                     title: "Weekly Newsletter",
-                                    description: "Subscribe for a curated list of the week's top events delivered to your inbox."
+                                    description: "Subscribe for a curated list of the week&apos;s top events delivered to your inbox."
                                 },
                                 {
                                     icon: Star,
@@ -190,7 +190,7 @@ export default function DailyAffirmationsPage() {
                 <section className="py-20 px-4">
                     <div className="container mx-auto text-center">
                         <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gradient">
-                            Don't Miss Out on What's Next!
+                            Don&apos;t Miss Out on What&apos;s Next!
                         </h2>
                         <p className="text-xl text-neutral-200 max-w-2xl mx-auto mb-12">
                             Explore events happening in your city and subscribe to our newsletter to stay in the loop.
@@ -214,6 +214,7 @@ export default function DailyAffirmationsPage() {
                     </div>
                 </section>
             </main>
+            {/* eslint-disable react/no-unescaped-entities */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{
@@ -235,6 +236,7 @@ export default function DailyAffirmationsPage() {
                     })
                 }}
             />
+            {/* eslint-enable react/no-unescaped-entities */}
         </>
     );
 }

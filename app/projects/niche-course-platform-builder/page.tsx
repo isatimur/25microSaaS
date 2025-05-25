@@ -192,7 +192,7 @@ export default function DailyAffirmationsPage() {
                             Ready to Share Your Passion & Expertise?
                         </h2>
                         <p className="text-xl text-neutral-200 max-w-2xl mx-auto mb-12">
-                            Join our community of creators and start building your online teaching business today. It's easier than you think!
+                            Join our community of creators and start building your online teaching business today. It&apos;s easier than you think!
                         </p>
                         <div className="flex items-center justify-center gap-4">
                             <a

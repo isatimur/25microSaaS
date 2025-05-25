@@ -1,6 +1,6 @@
 "use client";
 
-import { Leaf, ScanLine, CalendarClock, BellRing, SearchHeart, SunMoon, Sprout, Flower2, NotebookText, UserRoundPlus } from "lucide-react"; // Removed ArrowRight, Star, Cloud, Bell, Palette, Lock as they are unused.
+import { Leaf, ScanLine, CalendarClock, BellRing, ScanHeart, SunMoon, Sprout, Flower2, NotebookText, UserRoundPlus } from "lucide-react"; // Removed ArrowRight, Star, Cloud, Bell, Palette, Lock as they are unused.
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Header } from "@/components/Header";
 import Image from "next/image";
@@ -75,7 +75,7 @@ export default function DailyAffirmationsPage() {
                                     description: "Never forget to water again! Get convenient reminders for all care tasks."
                                 },
                                 {
-                                    icon: SearchHeart,
+                                    icon: ScanHeart,
                                     title: "AI Plant Doctor (Premium)",
                                     description: "Worried about a droopy leaf? Get AI-powered diagnostics and care advice."
                                 },
@@ -139,7 +139,7 @@ export default function DailyAffirmationsPage() {
                                     {[
                                         { icon: Sprout, text: "Free Plan: Manage up to 5 plants, basic schedules & reminders." },
                                         { icon: Flower2, text: "Premium Plan (Subscription): Unlimited plants, AI Plant Doctor, seasonal care guides, weather integration (for outdoor plants), advanced analytics." },
-                                        { icon: NotebookText, text: "Plant Journal (Premium): Keep detailed notes and photos of your plant's progress." }
+                                        { icon: NotebookText, text: "Plant Journal (Premium): Keep detailed notes and photos of your plant&apos;s progress." }
                                     ].map((item, index) => (
                                         <li key={index} className="flex items-start">
                                             <item.icon className="w-5 h-5 text-brand-yellow mr-2 mt-1 flex-shrink-0" />
@@ -171,7 +171,7 @@ export default function DailyAffirmationsPage() {
                         </h2>
                         <div className="max-w-4xl mx-auto prose prose-invert">
                             <p className="text-lg text-neutral-300">
-                                We're passionate about making plant care easy and enjoyable for everyone, from beginners to experienced horticulturalists. This app combines our love for plants with smart technology.
+                                We&apos;re passionate about making plant care easy and enjoyable for everyone, from beginners to experienced horticulturalists. This app combines our love for plants with smart technology.
                             </p>
                             <h3 className="text-xl font-semibold mt-8 mb-4">Key Learnings</h3>
                             <ul className="space-y-2">
