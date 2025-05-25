@@ -15,7 +15,7 @@ export default function DailyAffirmationsPage() {
                     <BackgroundBeams className="opacity-40" />
                     <div className="p-4 relative z-10 w-full container mx-auto text-center">
                         <div className="inline-flex items-center px-3 py-1 rounded-full border border-neutral-800 bg-neutral-900/50 text-sm mb-4">
-                            <span className="text-brand-yellow mr-2">Project #8</span>
+                            <span className="text-brand-yellow mr-2">Project #2</span>
                             <span className="text-neutral-400">Creative AI Tool</span>
                         </div>
                         <h1 className="text-4xl md:text-6xl font-bold mb-8 text-gradient">
