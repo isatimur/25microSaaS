@@ -15,10 +15,10 @@ export default function AboutPage() {
           <BackgroundBeams className="opacity-40" />
           <div className="p-4 relative z-10 w-full container mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-8 text-gradient">
-              About 25 MicroSaaS Challenge
+              About the AI Agent Challenge
             </h1>
             <p className="text-xl md:text-2xl text-neutral-200 max-w-3xl mx-auto mb-8">
-              Building a portfolio of micro-SaaS projects, one challenge at a time.
+              Building 25 autonomous AI agents that generate real revenue — one every two weeks for 50 weeks.
             </p>
             <div className="flex items-center justify-center gap-4">
               <a
@@ -28,7 +28,7 @@ export default function AboutPage() {
                 className="inline-flex items-center px-6 py-3 rounded-full border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 transition-colors"
               >
                 <Twitter className="w-5 h-5 mr-2" />
-                Follow on Twitter
+                Follow the Build
               </a>
               <a
                 href="https://github.com/25microsaas"
@@ -37,7 +37,7 @@ export default function AboutPage() {
                 className="inline-flex items-center px-6 py-3 rounded-full border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900 transition-colors"
               >
                 <Github className="w-5 h-5 mr-2" />
-                View on GitHub
+                Open Source Code
               </a>
             </div>
           </div>
@@ -47,34 +47,72 @@ export default function AboutPage() {
         <section className="py-20 px-4">
           <div className="container mx-auto max-w-4xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-8 text-brand-blue">
-              Our Mission
+              The Mission
             </h2>
-            <div className="prose prose-invert max-w-none">
+            <div className="prose prose-invert max-w-none space-y-6">
               <p className="text-lg text-neutral-300">
-                The 25 MicroSaaS Challenge was born from a simple idea: what if we could help developers 
-                turn their coding skills into sustainable micro-businesses? Our mission is to inspire and 
-                guide developers of all skill levels to build and launch their own micro-SaaS projects.
+                The AI agent revolution is here. LangChain, CrewAI, OpenAI&apos;s function calling,
+                and autonomous AI frameworks have made it possible for solo developers to build
+                AI products that replace thousands of dollars worth of human labor.
               </p>
               <p className="text-lg text-neutral-300">
-                Through bi-weekly challenges, community support, and comprehensive resources, we&apos;re 
-                creating an environment where developers can learn, build, and grow together.
+                Our mission is simple: <strong className="text-neutral-50">build 25 AI agent micro-SaaS businesses
+                in 50 weeks, each generating at least $200/month in revenue.</strong> We document
+                every step — the architecture, the code, the marketing, the revenue numbers.
+              </p>
+              <p className="text-lg text-neutral-300">
+                This isn&apos;t a tutorial project. These are real businesses with real customers
+                paying real money for AI agents that automate their work.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Team Section */}
+        {/* The Thesis */}
         <section className="py-20 px-4 bg-neutral-900/50">
           <div className="container mx-auto max-w-4xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-brand-blue">
-              Behind the Challenge
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-brand-blue">
+              The Thesis
             </h2>
-            <div className="prose prose-invert max-w-none">
+            <div className="prose prose-invert max-w-none space-y-6">
               <p className="text-lg text-neutral-300">
-                We&apos;re a team of passionate developers and entrepreneurs who believe in the power of 
-                learning by doing. Our experience in building and scaling SaaS products has taught us 
-                valuable lessons that we&apos;re excited to share with the community.
+                Every business has repetitive tasks that cost $500-5,000/month in human labor.
+                AI agents can automate 60-80% of these tasks at a fraction of the cost.
+                The businesses that adopt AI agents first will have an insurmountable cost advantage.
               </p>
+              <p className="text-lg text-neutral-300">
+                We believe the best way to learn AI agents is to build and sell them.
+                Each project teaches a new agentic AI pattern — from RAG pipelines to
+                multi-agent orchestration to autonomous web scraping.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Tech Philosophy */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-brand-blue">
+              Our Tech Stack
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                "Next.js + TypeScript",
+                "LangChain / CrewAI",
+                "OpenAI GPT-4",
+                "Supabase + Pinecone",
+                "Stripe Billing",
+                "Vercel Deployment",
+                "Bull MQ (Jobs)",
+                "Resend (Email)",
+              ].map((tech) => (
+                <div
+                  key={tech}
+                  className="p-4 rounded-xl border border-neutral-800 bg-neutral-900/50 text-center"
+                >
+                  <span className="text-neutral-200 text-sm">{tech}</span>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -84,10 +122,10 @@ export default function AboutPage() {
           <div className="container mx-auto">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center text-brand-blue">
-                Join Our Community
+                Follow the Journey
               </h2>
               <p className="text-xl text-center text-neutral-400 mb-8">
-                Get updates on new projects, behind-the-scenes insights, and early access to launches.
+                Weekly build logs, revenue updates, and the code behind every AI agent.
               </p>
               <div className="mt-8">
                 <Newsletter />
@@ -98,4 +136,4 @@ export default function AboutPage() {
       </main>
     </>
   );
-} 
+}
