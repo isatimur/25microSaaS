@@ -10,6 +10,343 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "building-ai-support-agent-rag-pipeline",
+    title: "Building the AI Support Agent: RAG Pipelines in Production",
+    excerpt:
+      "How we built a customer support agent that resolves 80% of tickets automatically using RAG (Retrieval-Augmented Generation) with Pinecone and GPT-4.",
+    date: "2025-05-20",
+    readTime: "9 min read",
+    category: "Build Log",
+    content: `Project #5 is our most technically ambitious agent yet. The AI Customer Support Agent needs to understand a customer's entire product — docs, FAQ, past tickets — and resolve issues instantly.
+
+## The Architecture Challenge
+
+The core problem: how do you make GPT-4 an expert on a specific product without fine-tuning? The answer is RAG — Retrieval-Augmented Generation.
+
+Here's the flow:
+
+1. Customer uploads their docs, FAQ, or a website URL
+2. We chunk the content into ~500 token segments
+3. Each chunk gets embedded using OpenAI's text-embedding-3-small
+4. Embeddings are stored in Pinecone with metadata
+5. When a user asks a question, we embed the query, search Pinecone for relevant chunks, and inject them into GPT-4's context
+
+## Chunking Strategy
+
+We tried three chunking approaches:
+
+- **Fixed-size chunks (500 tokens):** Fast but breaks context mid-sentence
+- **Semantic chunking (by paragraph/section):** Better context but variable sizes
+- **Recursive chunking with overlap:** Best of both worlds — 500 tokens with 100 token overlap
+
+We went with recursive chunking. The overlap ensures no context is lost at chunk boundaries.
+
+## The Escalation Problem
+
+The trickiest part wasn't the AI — it was knowing when NOT to use AI. We built an escalation classifier that detects:
+
+- Billing disputes (always escalate — legal risk)
+- Angry customers (escalate after 2 unsatisfying responses)
+- Questions outside the knowledge base (escalate with context)
+- Technical bugs (create a ticket, escalate to engineering)
+
+The classifier runs as a separate GPT-4 call that evaluates the conversation every 3 turns.
+
+## Revenue from Week 1
+
+We launched on a Friday. By Monday, we had 3 paying customers at $49/month. One of them — a Shopify app developer — told us: "I was spending 2 hours a day answering the same 10 questions. Now I spend zero."
+
+That's $147/month from day 4. We're on track for $500/month by end of month 1.
+
+## Key Metrics
+
+- Average resolution rate: 78%
+- Average response time: 2.3 seconds
+- Customer satisfaction (thumbs up): 89%
+- Cost per resolution: $0.03 (API costs)
+
+## What's Next
+
+We're adding multi-channel support (Slack bot, email responder) and a training feedback loop where customers can correct wrong answers to improve the agent over time.`,
+  },
+  {
+    slug: "ai-cold-email-agent-first-1000-revenue",
+    title: "AI Cold Outreach Agent: Our First $1,000 in Revenue",
+    excerpt:
+      "How we built an AI agent that researches prospects and writes personalized cold emails — and hit $1,000 MRR in 3 weeks.",
+    date: "2025-04-15",
+    readTime: "8 min read",
+    category: "Build Log",
+    content: `Project #3 — the AI Cold Outreach Agent — is our first agent to cross $1,000/month in revenue. Here's the full breakdown.
+
+## The Problem We Solved
+
+Cold email is a numbers game. But the best-performing emails aren't templated — they're deeply personalized. The problem? Researching each prospect takes 5-10 minutes. At 100 emails/day, that's 8+ hours of research.
+
+Our agent does that research in 3 seconds.
+
+## How the Agent Works
+
+When you add a prospect (name + email or LinkedIn URL), the agent:
+
+1. Scrapes their LinkedIn profile for role, company, recent posts
+2. Visits their company website for products, news, and positioning
+3. Checks for recent press mentions or blog posts
+4. Analyzes all this context with GPT-4
+5. Generates a personalized email that references real details
+
+The result: emails that feel hand-written, at machine scale.
+
+## The First Users
+
+We launched in three places:
+- A tweet thread showing before/after email comparisons (47K views)
+- r/sales on Reddit (120 upvotes, 3 signups from comments)
+- Cold outreach to... agency owners (yes, we used the tool to sell itself)
+
+That last one was the biggest unlock. Agency owners who sell cold outreach services became our power users. They're using our agent to serve their own clients.
+
+## Revenue Timeline
+
+- Week 1: $0 (building)
+- Week 2: $0 (building + launch prep)
+- Week 3: $237 (6 customers)
+- Week 4: $553 (14 customers)
+- Week 5: $1,027 (26 customers)
+
+At an average of $39.50/customer, we needed ~26 customers to hit $1K.
+
+## What We Learned
+
+1. **Demo-driven sales work best** — showing a prospect their own personalized email in real-time converts like crazy
+2. **Agency owners are ideal customers** — they have budget, volume, and they churn less because their own revenue depends on the tool
+3. **Email deliverability is a feature** — we had to add warm-up guidance because amazing emails sent from cold domains still land in spam
+
+## Unit Economics
+
+- Cost per email (OpenAI API + scraping): ~$0.05
+- Average emails per customer per month: ~400
+- Cost per customer per month: ~$20
+- Revenue per customer: $39.50
+- Gross margin: ~49%
+
+Good enough for now. We're optimizing by caching prospect research and using GPT-3.5 for simpler emails.`,
+  },
+  {
+    slug: "building-ai-seo-content-agent-architecture",
+    title: "AI SEO Content Agent: Architecture Deep Dive",
+    excerpt:
+      "The complete technical architecture behind our AI agent that autonomously researches, writes, and publishes SEO blog posts. Multi-step agent chains explained.",
+    date: "2025-03-25",
+    readTime: "10 min read",
+    category: "Technical",
+    content: `Project #2 — the AI SEO Content Agent — is our most complex agent architecture. It's a multi-step chain that takes a topic and delivers a published, SEO-optimized blog post. Here's how we built it.
+
+## The Agent Pipeline
+
+The entire workflow is a 7-step LangChain agent chain:
+
+### Step 1: Keyword Research Agent
+Input: A topic or seed keyword
+Process: Queries the Serper API for related searches, People Also Ask, and autocomplete suggestions. GPT-4 analyzes search volume signals and competition.
+Output: Primary keyword + 5-10 secondary keywords + search intent classification
+
+### Step 2: Competitor Analysis Agent
+Input: Primary keyword
+Process: Scrapes the top 10 Google results. Extracts headings, word counts, content structure, and topics covered.
+Output: Content gap analysis + recommended outline
+
+### Step 3: Outline Generator
+Input: Keyword data + competitor analysis
+Process: GPT-4 creates a detailed outline with H2s, H3s, and key points for each section.
+Output: Structured article outline (JSON format)
+
+### Step 4: Section Writer Agent
+Input: Outline + keywords
+Process: Writes each section individually with GPT-4, ensuring keyword integration and internal linking opportunities.
+Output: Full article markdown (~2,000-3,000 words)
+
+### Step 5: SEO Optimizer Agent
+Input: Full article
+Process: Checks keyword density, heading structure, meta tags, alt text suggestions, and readability score.
+Output: Optimized article + meta title + meta description
+
+### Step 6: Image Generation Agent
+Input: Article sections
+Process: Generates 2-3 relevant images using DALL-E 3 based on article context.
+Output: Image files + alt text
+
+### Step 7: Publisher Agent
+Input: Final article + images + meta data
+Process: Publishes to the user's CMS via WordPress REST API, Ghost API, or Webflow API.
+Output: Published URL
+
+## The LangChain Implementation
+
+We use LangChain's Sequential Chain to wire these together. Each agent is a separate chain with its own system prompt, tools, and output parser.
+
+The key design decision: we pass a shared "content brief" object through the entire pipeline. Each agent reads from and writes to this brief, so downstream agents have full context.
+
+## Cost Per Article
+
+- Keyword research (Serper API): $0.01
+- GPT-4 calls (outline + writing + optimization): ~$1.50
+- DALL-E 3 images (2-3 per article): ~$0.12
+- Total cost per article: ~$1.63
+
+At $49/month for 10 articles, that's $4.90 per article in revenue vs. $1.63 in cost. 67% gross margin.
+
+## Quality Benchmarks
+
+We ran the agent against 50 manually-written SEO articles and scored them:
+
+- SEO optimization score: Agent 87/100 vs. Human 82/100
+- Readability (Flesch-Kincaid): Agent Grade 8 vs. Human Grade 9
+- Factual accuracy: Agent 94% vs. Human 97%
+- Time to produce: Agent 4 minutes vs. Human 3-5 hours
+
+The agent wins on speed and SEO optimization. Humans still edge out on creativity and accuracy. Our hybrid approach: AI writes, human reviews.
+
+## What's Next
+
+We're building a "content refresh" agent that monitors published articles' Google rankings and automatically updates them when positions drop — keeping content evergreen.`,
+  },
+  {
+    slug: "week-7-8-ai-social-autopilot-build-log",
+    title: "Week 7-8 Build Log: AI Social Media Autopilot",
+    excerpt:
+      "Two weeks of building a multi-platform social media agent with CrewAI. Brand voice learning, image generation, and comment response — all automated.",
+    date: "2025-03-18",
+    readTime: "7 min read",
+    category: "Build Log",
+    content: `Week 7-8 is in the books. We shipped the AI Social Media Autopilot — our first multi-agent system using CrewAI. Here's the full build log.
+
+## Day 1-2: Architecture Decision
+
+We chose CrewAI over LangChain for this project because social media management is inherently a team workflow:
+
+- **Content Strategist Agent:** Decides what to post based on trends and brand goals
+- **Copywriter Agent:** Writes the actual post copy in the brand's voice
+- **Designer Agent:** Generates images and carousel layouts
+- **Scheduler Agent:** Picks optimal posting times based on audience data
+- **Engagement Agent:** Monitors and responds to comments
+
+CrewAI lets us define each agent with a role, backstory, and tools. They collaborate naturally.
+
+## Day 3-5: Brand Voice Learning
+
+The hardest part was teaching the AI to write in the user's voice. We built a "brand voice analyzer" that:
+
+1. Takes 10+ example posts from the user
+2. Extracts patterns: tone (casual/professional), emoji usage, hashtag style, post length
+3. Creates a "brand voice prompt" that gets injected into every generation
+
+The result: posts that are nearly indistinguishable from the user's own writing.
+
+## Day 6-8: Multi-Platform API Integration
+
+Each platform has its own API headaches:
+
+- **Twitter/X:** OAuth 2.0 with PKCE, 280-char limit, image upload via media endpoint
+- **LinkedIn:** Painful OAuth, UGC Posts API for rich media, company page vs. personal
+- **Instagram:** Requires Facebook Business account, no direct API posting (we use the Facebook Graph API)
+
+We built an adapter pattern: a unified interface that each platform implements. New platforms just need a new adapter.
+
+## Day 9-11: Image Generation
+
+For visual posts, we use DALL-E 3 with brand-specific prompts:
+
+- The agent analyzes the post topic
+- Generates a prompt that includes the brand's color palette and style
+- Creates the image and formats it for each platform's dimensions
+
+For carousels (LinkedIn/Instagram), we generate multiple slides with a consistent visual theme.
+
+## Day 12-14: Launch + First Revenue
+
+Launched with a "manage 1 platform free, pay for more" model. Results:
+
+- 47 signups in the first week (free tier)
+- 12 converted to paid ($29/month) within 5 days
+- First month revenue: $348
+
+The comment response feature is the killer differentiator. Users love that the AI responds to comments in their voice while they sleep.
+
+## What Surprised Us
+
+The engagement agent (comment responder) drives more upgrades than the content creation agent. People post manually but hate managing replies. Next iteration: we're making the engagement agent available as a standalone product at $14.99/month.`,
+  },
+  {
+    slug: "ai-code-review-agent-github-integration",
+    title: "Building the AI Code Review Agent: GitHub App Deep Dive",
+    excerpt:
+      "How we built a GitHub App that reviews every PR with GPT-4. Webhook handling, diff analysis, inline comments, and the learning feedback loop.",
+    date: "2025-04-01",
+    readTime: "8 min read",
+    category: "Technical",
+    content: `Project #8 — the AI Code Review Agent — is our first developer tool. It installs as a GitHub App and reviews every pull request automatically. Here's the complete technical breakdown.
+
+## GitHub App Architecture
+
+The agent runs as a GitHub App (not an OAuth App). This gives us:
+
+- Webhook subscriptions for PR events
+- Bot-level permissions to post comments
+- Per-repository installation (users choose which repos to enable)
+
+When a PR is opened or updated, GitHub sends a webhook to our endpoint. We process it like this:
+
+1. Receive the webhook event (pull_request.opened or pull_request.synchronize)
+2. Fetch the PR diff via GitHub API
+3. Parse the diff into file-level changes
+4. Send each file's changes to GPT-4 for analysis
+5. Post inline comments directly on the PR
+
+## Diff Analysis Strategy
+
+We don't send the entire diff to GPT-4 in one shot — that would blow through context limits on large PRs. Instead:
+
+- We analyze each changed file separately
+- For files > 500 lines changed, we chunk by function/class
+- We include 10 lines of surrounding context for each change
+- We pass the file's language and the PR description for additional context
+
+## The Review Prompt
+
+The system prompt is critical. We give GPT-4 the role of a senior engineer and instruct it to:
+
+1. Check for bugs and logic errors
+2. Identify security vulnerabilities (SQL injection, XSS, auth issues)
+3. Flag performance anti-patterns
+4. Note style inconsistencies (but don't nitpick)
+5. Suggest improvements with specific code examples
+
+Each suggestion is posted as an inline PR comment at the exact line number.
+
+## The Learning Loop
+
+The most powerful feature: the agent gets smarter over time. When a developer dismisses a suggestion (marks it as "won't fix"), we store that as negative feedback. When they accept and commit a suggestion, that's positive feedback.
+
+Every 100 feedback events, we update the team's custom prompt with learned preferences: "This team prefers composition over inheritance" or "This repo uses snake_case for database fields."
+
+## Revenue Model
+
+We charge per repository:
+- $19/month per repo (solo devs)
+- $49/month for 5 repos (small teams)
+- $99/month for 15 repos (growing teams)
+
+After 2 weeks: 23 repos installed, 8 paying teams, $412 MRR.
+
+## Key Learnings
+
+- **Developer UX matters more than AI quality** — a fast, non-intrusive review that posts in 30 seconds beats a thorough 5-minute analysis
+- **False positives kill adoption** — we tuned aggressively to reduce noise; it's better to miss an issue than flag a non-issue
+- **Security findings get the most engagement** — teams appreciate the AI catching leaked secrets and SQL injection patterns
+- **GitHub's API has quirks** — webhook retries, rate limits on comment creation, and diff pagination all needed careful handling`,
+  },
+  {
     slug: "why-we-are-building-25-ai-agents",
     title: "Why We're Building 25 AI Agents in 50 Weeks",
     excerpt:
