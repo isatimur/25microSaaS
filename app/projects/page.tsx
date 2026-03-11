@@ -1,6 +1,7 @@
 "use client";
 
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Newsletter } from "@/components/Newsletter";
 import { projects } from "@/lib/projects";
@@ -82,6 +83,7 @@ export default function ProjectsPage() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Newsletter } from "@/components/Newsletter";
 import { Github, Twitter } from "lucide-react";
@@ -134,6 +135,7 @@ export default function AboutPage() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }

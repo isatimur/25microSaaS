@@ -1,12 +1,20 @@
 import { MetadataRoute } from "next";
 import { projects } from "@/lib/projects";
+import { blogPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const projectEntries: MetadataRoute.Sitemap = projects.map((project) => ({
     url: `https://25microsaas.com/projects/${project.id}`,
     lastModified: new Date(),
     changeFrequency: project.status === "launched" ? "weekly" : "monthly",
-    priority: project.status === "launched" ? 0.9 : 0.7,
+    priority: project.status === "launched" ? 0.8 : 0.6,
+  }));
+
+  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `https://25microsaas.com/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
   }));
 
   return [
@@ -19,33 +27,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: "https://25microsaas.com/projects",
       lastModified: new Date(),
-      changeFrequency: "daily",
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: "https://25microsaas.com/blog",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: "https://25microsaas.com/about",
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: "https://25microsaas.com/faq",
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     ...projectEntries,
-    {
-      url: "https://www.daily-affirmation.today",
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: "https://chromewebstore.google.com/detail/daily-affirmations/nhhicimcipdgjckacooendaikhjhenle",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+    ...blogEntries,
   ];
 }

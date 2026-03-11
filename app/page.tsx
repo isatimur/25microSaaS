@@ -22,6 +22,7 @@ import { Statistics } from "@/components/Statistics";
 import { Header } from "@/components/Header";
 import { addDays, startOfDay, isBefore } from "date-fns";
 import { BackgroundBeams } from "@/components/ui/background-beams";
+import { Footer } from "@/components/Footer";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 
@@ -298,24 +299,7 @@ export default function LandingPage() {
         </div>
       </main>
 
-      <footer className="bg-gray-100 py-12 mt-32">
-        <div className="container mx-auto px-4 text-center text-gray-600">
-          <p className="mb-4">
-            &copy; 2025 AI Agent Challenge by MicroSaaS. All rights reserved.
-          </p>
-          <div className="space-x-4">
-            <a href="#" className="text-blue-600 hover:underline">
-              Terms of Service
-            </a>
-            <a href="#" className="text-blue-600 hover:underline">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-blue-600 hover:underline">
-              Contact Us
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

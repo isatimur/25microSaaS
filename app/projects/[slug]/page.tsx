@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getProjectBySlug } from "@/lib/projects";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import Image from "next/image";
 import { ArrowRight, Star, DollarSign, TrendingUp, Zap } from "lucide-react";
 
@@ -206,6 +207,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
       </main>
+      <Footer />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

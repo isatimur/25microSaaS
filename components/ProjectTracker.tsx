@@ -54,7 +54,7 @@ export function ProjectTracker() {
   return (
     <div className="w-full mx-auto p-8 bg-white rounded-xl shadow-lg">
       <h2 className="text-4xl font-bold text-center mb-4 text-blue-600">
-        25 MicroSaaS Project Tracker
+        25 AI Agent Tracker
       </h2>
       <div className="flex items-center justify-center gap-6 mb-8 text-sm text-gray-500">
         <span className="flex items-center gap-1">

@@ -1,6 +1,7 @@
 "use client";
 
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Newsletter } from "@/components/Newsletter";
 
@@ -101,6 +102,7 @@ export default function FAQPage() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }

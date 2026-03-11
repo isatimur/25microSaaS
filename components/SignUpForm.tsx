@@ -1,43 +1,90 @@
-"use client"
+"use client";
 
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { toast } from "@/components/ui/use-toast"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/components/ui/use-toast";
+import { AlertCircle, CheckCircle2 } from "lucide-react";
 
 export function SignUpForm() {
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    // Here you would typically send the email to your backend
-    console.log('Signing up:', email)
-    toast({
-      title: "Success!",
-      description: "You've been signed up for the challenge.",
-    })
-    setEmail('')
-  }
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast({
+          variant: "destructive",
+          title: "Subscription Failed",
+          description: (
+            <div className="flex items-center gap-2">
+              <AlertCircle className="h-4 w-4" />
+              <span>{data.error || "Failed to subscribe"}</span>
+            </div>
+          ),
+        });
+        return;
+      }
+
+      toast({
+        title: "You're In!",
+        description: (
+          <div className="flex items-center gap-2">
+            <CheckCircle2 className="h-4 w-4 text-green-500" />
+            <span>Welcome to the AI Agent Challenge. Check your inbox.</span>
+          </div>
+        ),
+      });
+      setEmail("");
+    } catch {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-8 rounded-xl shadow-lg">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-4 bg-white p-8 rounded-xl shadow-lg"
+    >
       <div className="space-y-2">
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="hero-email" className="text-neutral-700">Email</Label>
         <Input
-          id="email"
+          id="hero-email"
           type="email"
           placeholder="you@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          disabled={isLoading}
+          className="w-full border-neutral-300 focus-visible:ring-brand-blue"
         />
       </div>
-      <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
-        Sign Up for the Challenge
+      <Button
+        type="submit"
+        disabled={isLoading}
+        className="w-full bg-brand-blue hover:bg-brand-blue/90 text-white font-semibold"
+      >
+        {isLoading ? "Joining..." : "Join the AI Agent Challenge"}
       </Button>
     </form>
-  )
+  );
 }
-

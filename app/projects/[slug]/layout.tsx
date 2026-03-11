@@ -18,22 +18,22 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL("https://25microsaas.com"),
-    title: `${project.title} - 25 MicroSaaS Challenge`,
+    title: `${project.title} — AI Agent Challenge`,
     description: project.description,
     keywords: [
       project.title.toLowerCase(),
       project.type.toLowerCase(),
-      "microsaas",
-      "saas challenge",
+      "ai agents",
+      "agentic ai",
       ...project.techStack.map((t) => t.toLowerCase()),
     ],
     openGraph: {
       type: "website",
       locale: "en_US",
       url: `https://25microsaas.com/projects/${project.id}`,
-      title: `${project.title} - 25 MicroSaaS Challenge`,
+      title: `${project.title} — AI Agent Challenge`,
       description: project.description,
-      siteName: "25 MicroSaaS Challenge",
+      siteName: "AI Agent Challenge",
       images: [
         {
           url: project.imageUrl,
