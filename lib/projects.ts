@@ -28,6 +28,10 @@ export interface Project {
   ctaText: string;
   heroSubtitle: string;
   whyItMakesMoney: string;
+  buildWeek: string;
+  idealCustomer: string;
+  competitors: string[];
+  useCases: string[];
 }
 
 export const projects: Project[] = [
@@ -63,6 +67,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Add to Chrome — It's Free",
     heroSubtitle: "Transform your new tab with AI-generated, personalized affirmations that adapt to your mood and goals.",
+    buildWeek: "Week 1–2",
+    idealCustomer: "Self-improvement enthusiasts, productivity hackers, and remote workers who spend hours in Chrome daily. They value positive mindset practices but forget to do them consistently.",
+    competitors: ["Momentum Dashboard", "Mindful New Tab", "DailyAffirmations.com", "Headspace"],
+    useCases: ["Starting the day with a positive mindset", "Replacing doom-scrolling with affirmations", "Tracking mood patterns over time", "Sharing daily affirmations with friends"],
   },
   {
     id: "ai-seo-content-agent",
@@ -96,6 +104,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Start Publishing AI Content",
     heroSubtitle: "An AI agent that researches, writes, illustrates, and publishes SEO blog posts — autonomously.",
+    buildWeek: "Week 3–4",
+    idealCustomer: "Small business owners, SaaS founders, and content marketers who know SEO drives traffic but lack the time or skill to write consistently. They want hands-off content that ranks.",
+    competitors: ["Jasper AI", "Surfer SEO", "Writesonic", "SEOwind", "Koala AI"],
+    useCases: ["Auto-publishing weekly blog posts for a SaaS blog", "Generating product comparison articles for affiliate sites", "Creating location-based landing pages for local businesses", "Scaling content for a niche authority site"],
   },
   {
     id: "ai-cold-email-agent",
@@ -129,6 +141,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Send Your First AI Email",
     heroSubtitle: "AI researches each prospect and writes emails so personalized they feel hand-written.",
+    buildWeek: "Week 5–6",
+    idealCustomer: "B2B sales teams, agency owners, and solopreneurs who need pipeline but hate writing cold emails. They've tried templates and know personalization wins but can't scale it manually.",
+    competitors: ["Instantly.ai", "Lemlist", "Apollo.io", "Smartlead", "Woodpecker"],
+    useCases: ["SDRs personalizing 200+ outbound emails per day", "Agency owners pitching potential clients", "SaaS founders reaching out to beta users", "Freelancers finding new clients in a niche"],
   },
   {
     id: "ai-social-autopilot",
@@ -162,6 +178,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Automate Your Social Media",
     heroSubtitle: "An AI agent that creates, posts, and engages across all your social channels — on brand, on time.",
+    buildWeek: "Week 7–8",
+    idealCustomer: "Solopreneurs, small business owners, and indie hackers who know they need social media presence but can't justify hiring a social media manager. They want consistency without the time investment.",
+    competitors: ["Buffer", "Hootsuite", "Later", "Publer", "Typefully"],
+    useCases: ["Maintaining a consistent posting schedule across 3+ platforms", "Auto-generating LinkedIn thought leadership content", "Creating Instagram carousels from blog posts", "Monitoring and responding to brand mentions"],
   },
   {
     id: "ai-support-agent",
@@ -195,6 +215,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Deploy Your AI Agent",
     heroSubtitle: "A trainable AI agent that resolves customer issues 24/7 — learning from your docs and past tickets.",
+    buildWeek: "Week 9–10",
+    idealCustomer: "SaaS companies with 100-10,000 customers, e-commerce stores, and developer tool companies that get repetitive support questions and want to provide instant 24/7 resolution without hiring more agents.",
+    competitors: ["Intercom Fin", "Zendesk AI", "Freshdesk Freddy", "ChatBot.com", "Tidio"],
+    useCases: ["Resolving common 'how to' questions from product docs", "Handling billing and subscription inquiries", "Triaging bug reports and routing to engineering", "Providing instant onboarding help for new users"],
   },
   {
     id: "ai-meeting-copilot",
@@ -228,6 +252,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Connect Your Calendar",
     heroSubtitle: "AI that joins your calls, takes perfect notes, and creates tasks in your project tools — automatically.",
+    buildWeek: "Week 11–12",
+    idealCustomer: "Remote-first teams, sales managers, project managers, and consultants who are in 5+ meetings per day and waste hours on notes. They want structured summaries and automatic task creation.",
+    competitors: ["Otter.ai", "Fireflies.ai", "tl;dv", "Fathom", "Grain"],
+    useCases: ["Sales teams recording and analyzing discovery calls", "Engineering stand-ups auto-generating Jira tickets", "Consultants sending meeting summaries to clients", "Leadership reviewing meeting talk-time ratios"],
   },
   {
     id: "ai-resume-tailor",
@@ -261,6 +289,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Tailor Your Resume Now",
     heroSubtitle: "Paste a job description. Get a perfectly tailored resume and cover letter in 30 seconds.",
+    buildWeek: "Week 13–14",
+    idealCustomer: "Active job seekers applying to 10+ positions per week, career changers, and new graduates who need to customize resumes for each application but lack the time to rewrite everything.",
+    competitors: ["Teal", "Jobscan", "Kickresume", "Rezi", "Resume.io"],
+    useCases: ["Tailoring a software engineer resume for different tech stacks", "Optimizing a resume for a specific ATS system", "Generating a cover letter matched to the job posting", "Career changers reframing experience for a new industry"],
   },
   {
     id: "ai-code-review-agent",
@@ -294,6 +326,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Install on GitHub",
     heroSubtitle: "AI agent that reviews every PR — catching bugs, security issues, and enforcing your standards.",
+    buildWeek: "Week 15–16",
+    idealCustomer: "Engineering teams of 3-20 developers where code review is a bottleneck. Senior devs spend too much time reviewing PRs. They want consistent quality enforcement without slowing down velocity.",
+    competitors: ["CodeRabbit", "Sourcery", "DeepCode (Snyk)", "Amazon CodeGuru", "Qodo"],
+    useCases: ["Catching security vulnerabilities before merge", "Enforcing team coding standards automatically", "Flagging performance anti-patterns in database queries", "Reviewing dependency updates for breaking changes"],
   },
   {
     id: "ai-lead-scraper",
@@ -327,6 +363,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Define Your ICP & Go",
     heroSubtitle: "AI agent that finds, enriches, and scores leads matching your ideal customer profile — automatically.",
+    buildWeek: "Week 17–18",
+    idealCustomer: "B2B sales teams, growth marketers, and agency owners who need a steady stream of qualified leads but find existing databases too broad or too expensive. They want niche-specific, verified leads.",
+    competitors: ["Apollo.io", "ZoomInfo", "Lusha", "Hunter.io", "Clearbit"],
+    useCases: ["Finding SaaS companies using a specific tech stack", "Building lists of e-commerce stores in a niche", "Identifying recently funded startups for outreach", "Scraping conference attendee lists for follow-up"],
   },
   {
     id: "ai-product-copy-agent",
@@ -360,6 +400,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Generate Product Copy",
     heroSubtitle: "Upload a product photo. Get SEO-optimized titles, descriptions, and ad copy — instantly.",
+    buildWeek: "Week 19–20",
+    idealCustomer: "E-commerce sellers with 50+ products on Shopify, Amazon, or Etsy who can't afford to hire copywriters for every listing. Dropshippers and private label sellers are ideal targets.",
+    competitors: ["Copy.ai", "Writesonic", "Hypotenuse AI", "Describely", "AdCreative.ai"],
+    useCases: ["Generating Amazon FBA product listings at scale", "Creating Shopify product descriptions from supplier photos", "Writing Google Shopping ad copy for 500+ SKUs", "Translating and localizing product copy for international markets"],
   },
   {
     id: "ai-invoice-agent",
@@ -393,6 +437,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Scan Your First Receipt",
     heroSubtitle: "AI agent that turns receipts into organized expenses, invoices, and tax reports — automatically.",
+    buildWeek: "Week 21–22",
+    idealCustomer: "Freelancers, solo consultants, and micro-agency owners who dread bookkeeping. They want to snap receipts and have expenses auto-categorized — and generate professional invoices without touching spreadsheets.",
+    competitors: ["QuickBooks Self-Employed", "FreshBooks", "Wave", "Dext (Receipt Bank)", "Keeper Tax"],
+    useCases: ["Freelance designer tracking project expenses by client", "Consultant generating monthly invoices from tracked time", "Small agency preparing quarterly tax summaries", "Digital nomad categorizing multi-currency expenses"],
   },
   {
     id: "ai-competitor-spy",
@@ -426,6 +474,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Track Your Competitors",
     heroSubtitle: "AI agent that monitors competitors 24/7 and delivers weekly intelligence reports.",
+    buildWeek: "Week 23–24",
+    idealCustomer: "SaaS founders, product managers, and marketing leads at startups who obsess over competitors but lack the budget for enterprise CI tools. They want automated monitoring, not manual Googling.",
+    competitors: ["Crayon", "Klue", "Kompyte", "SimilarWeb", "Visualping"],
+    useCases: ["Tracking a competitor's pricing page for changes", "Monitoring competitor blog content strategy", "Getting alerts when competitors launch new features", "Analyzing competitor social media ad campaigns"],
   },
   {
     id: "ai-content-repurposer",
@@ -459,6 +511,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Repurpose Your Content",
     heroSubtitle: "Upload once. Get Twitter threads, LinkedIn posts, newsletters, and more — instantly.",
+    buildWeek: "Week 25–26",
+    idealCustomer: "Content creators, YouTubers, podcasters, and B2B marketers who produce long-form content but struggle to distribute it across channels. They want one piece of content turned into ten.",
+    competitors: ["Repurpose.io", "Opus Clip", "Castmagic", "ContentFly", "Lately.ai"],
+    useCases: ["Turning a 2,000-word blog post into a Twitter thread and LinkedIn post", "Converting a podcast episode into a newsletter and blog article", "Extracting YouTube video highlights as Instagram Reels scripts", "Creating email drip sequences from a webinar recording"],
   },
   {
     id: "ai-recruitment-screener",
@@ -492,6 +548,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Screen Your Applicants",
     heroSubtitle: "AI agent that screens, ranks, and shortlists candidates — from 100 resumes to a shortlist in 60 seconds.",
+    buildWeek: "Week 27–28",
+    idealCustomer: "HR teams at growing startups (50-500 employees), staffing agencies, and hiring managers drowning in resumes. They receive 200+ applications per role and need to shortlist in hours, not days.",
+    competitors: ["Lever", "Greenhouse ATS", "HireVue", "Pymetrics", "Ideal (Ceridian)"],
+    useCases: ["Screening 300 engineering applicants for a senior role", "Ranking marketing candidates by culture fit + skill match", "Generating interview questions tailored to each shortlisted candidate", "Staffing agency processing bulk applications for multiple clients"],
   },
   {
     id: "ai-contract-analyzer",
@@ -525,6 +585,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Analyze Your Contract",
     heroSubtitle: "Upload any contract. Get risk analysis, plain-English summary, and negotiation points in 30 seconds.",
+    buildWeek: "Week 29–30",
+    idealCustomer: "Freelancers, startup founders, and small business owners who sign contracts regularly but can't afford a lawyer for every review. They want to understand what they're signing before it's too late.",
+    competitors: ["Ironclad", "ContractPodAi", "LawGeex", "SpotDraft", "Juro"],
+    useCases: ["Freelancer reviewing a client's service agreement", "Startup founder analyzing an investor term sheet", "Small business owner checking a commercial lease", "Agency reviewing a vendor SLA for hidden penalties"],
   },
   {
     id: "ai-data-extractor",
@@ -558,6 +622,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Extract Your Data",
     heroSubtitle: "AI agent that turns any document into clean, structured data — invoices, forms, receipts, and more.",
+    buildWeek: "Week 31–32",
+    idealCustomer: "Operations teams, accounting firms, insurance companies, and logistics businesses that process hundreds of paper documents or PDFs monthly. Manual data entry is their biggest time sink.",
+    competitors: ["Amazon Textract", "Nanonets", "Rossum", "Parseur", "Docsumo"],
+    useCases: ["Accounting firm extracting data from 500 client invoices per month", "Insurance company processing claims forms", "Logistics team digitizing shipping manifests", "Real estate firm extracting terms from lease agreements"],
   },
   {
     id: "ai-finance-coach",
@@ -591,6 +659,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Connect Your Bank",
     heroSubtitle: "AI agent that analyzes your spending, finds savings, and coaches you to financial freedom.",
+    buildWeek: "Week 33–34",
+    idealCustomer: "Millennials and Gen-Z professionals earning $40K-$120K who want to save more but don't know where to start. They're app-native, subscription-friendly, and open to AI managing their finances.",
+    competitors: ["Mint (Intuit)", "YNAB", "Copilot Money", "Monarch Money", "Cleo AI"],
+    useCases: ["Identifying and canceling unused subscriptions", "Getting weekly spending summaries with saving tips", "Setting and tracking a vacation savings goal", "Finding better rates on recurring bills like insurance"],
   },
   {
     id: "ai-real-estate-agent",
@@ -624,6 +696,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Create Your Listing",
     heroSubtitle: "Upload property photos. Get compelling descriptions, virtual staging, and social ads — instantly.",
+    buildWeek: "Week 35–36",
+    idealCustomer: "Real estate agents listing 5+ properties per month, property management companies, and Airbnb hosts who need compelling descriptions fast. They know great copy sells faster but can't write it themselves.",
+    competitors: ["Zillow Premier Agent", "ListingAI", "Epique AI", "Virtual Staging AI", "Restb.ai"],
+    useCases: ["Agent generating MLS listing descriptions from phone photos", "Property manager creating Airbnb listing copy", "Developer marketing new construction with AI-staged images", "International agent localizing listings for foreign buyers"],
   },
   {
     id: "ai-newsletter-agent",
@@ -657,6 +733,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Launch Your AI Newsletter",
     heroSubtitle: "AI agent that curates, writes, and sends a professional newsletter for your niche — on autopilot.",
+    buildWeek: "Week 37–38",
+    idealCustomer: "Newsletter operators, community managers, and marketers who want to publish consistently but spend too much time finding and curating content. They need AI to do the research, and they add the human touch.",
+    competitors: ["Beehiiv", "Substack", "Curated.co", "Mailbrew", "Stoop"],
+    useCases: ["Running a daily AI news newsletter on autopilot", "Curating a weekly industry roundup for a B2B audience", "Auto-generating a community digest from Slack/Discord activity", "Creating a 'best of the web' newsletter for a niche hobby"],
   },
   {
     id: "ai-tutoring-agent",
@@ -690,6 +770,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Start Learning Free",
     heroSubtitle: "AI tutor that adapts to your learning style, generates practice, and tracks your mastery — 24/7.",
+    buildWeek: "Week 39–40",
+    idealCustomer: "Parents of K-12 students who want supplemental education, college students struggling with specific subjects, and lifelong learners. They value personalized attention but can't afford $50+/hour tutors.",
+    competitors: ["Khan Academy", "Chegg", "Photomath", "Brainly", "Khanmigo"],
+    useCases: ["High school student getting step-by-step help with calculus", "Parent setting up a personalized learning plan for their 8-year-old", "College student practicing organic chemistry with AI-generated problems", "Adult learner studying for a professional certification exam"],
   },
   {
     id: "ai-review-manager",
@@ -723,6 +807,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Manage Your Reviews",
     heroSubtitle: "AI agent that monitors and responds to all your reviews — empathetically, instantly, on brand.",
+    buildWeek: "Week 41–42",
+    idealCustomer: "Local businesses (restaurants, dental offices, salons), multi-location brands, and reputation management agencies. They get reviews on 3+ platforms and never have time to respond to all of them.",
+    competitors: ["Birdeye", "Podium", "Reputation.com", "ReviewTrackers", "Yext"],
+    useCases: ["Restaurant responding to 50+ Google reviews per month", "Dental practice addressing negative Yelp reviews empathetically", "Agency managing reviews for 20 client locations", "Hotel chain maintaining consistent response quality across properties"],
   },
   {
     id: "ai-podcast-producer",
@@ -756,6 +844,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Upload Your Episode",
     heroSubtitle: "Upload a podcast recording. Get transcripts, show notes, clips, and social posts — in minutes.",
+    buildWeek: "Week 43–44",
+    idealCustomer: "Independent podcasters, podcast networks, and content teams who produce weekly episodes but spend 3-5 hours on post-production per episode. They want to publish faster and repurpose content for growth.",
+    competitors: ["Descript", "Podium", "Castmagic", "Riverside.fm", "Capsho"],
+    useCases: ["Solo podcaster generating show notes and social clips automatically", "Podcast network processing 10+ episodes per week", "Interview show creating highlight reels for YouTube Shorts", "Corporate podcast team extracting key quotes for internal comms"],
   },
   {
     id: "ai-translation-agent",
@@ -789,6 +881,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Translate Your Content",
     heroSubtitle: "AI agent that translates with cultural context — preserving your brand voice across every language.",
+    buildWeek: "Week 45–46",
+    idealCustomer: "SaaS companies expanding internationally, e-commerce brands selling globally, and content creators who want to reach non-English audiences. They need quality beyond Google Translate but can't afford human translators for everything.",
+    competitors: ["DeepL", "Phrase (Memsource)", "Lokalise", "Crowdin", "Smartling"],
+    useCases: ["SaaS company localizing their app into 10 languages", "E-commerce brand translating 1,000 product descriptions", "Documentation team maintaining multi-language docs in sync", "Marketing team localizing ad copy with cultural adaptation"],
   },
   {
     id: "ai-workflow-builder",
@@ -822,6 +918,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Describe Your Workflow",
     heroSubtitle: "Describe what you want automated in plain English. The AI agent builds and runs it.",
+    buildWeek: "Week 47–48",
+    idealCustomer: "Operations managers, marketing teams, and small business owners who use 5+ SaaS tools but waste hours on repetitive tasks between them. They want Zapier-level automation but with AI intelligence — described in plain English.",
+    competitors: ["Zapier", "Make (Integromat)", "n8n", "Activepieces", "Bardeen"],
+    useCases: ["Auto-triaging support emails and creating tasks in Linear", "Syncing CRM data to Google Sheets with AI enrichment", "Monitoring RSS feeds and posting summaries to Slack", "Processing inbound leads from forms and scoring them with AI"],
   },
   {
     id: "ai-changelog-agent",
@@ -855,6 +955,10 @@ export const projects: Project[] = [
     ],
     ctaText: "Connect Your Repo",
     heroSubtitle: "AI agent that turns your git commits into beautiful, user-friendly changelogs and release notes.",
+    buildWeek: "Week 49–50",
+    idealCustomer: "SaaS product teams, developer tool companies, and open-source maintainers who ship frequently but never communicate updates well. They want changelogs to write themselves from git activity.",
+    competitors: ["Changelogfy", "Beamer", "LaunchNotes", "Canny", "Released.so"],
+    useCases: ["SaaS team auto-generating release notes from merged PRs", "Open-source project maintaining a public changelog", "Product team collecting feature votes on a roadmap page", "Engineering team notifying users when bug fixes ship"],
   },
 ];
 
