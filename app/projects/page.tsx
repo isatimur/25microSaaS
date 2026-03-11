@@ -134,9 +134,12 @@ function ProjectSection({
                   {project.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-xs text-green-400">
-                    <DollarSign className="w-3 h-3" />
-                    {project.monthlyRevenuePotential}/mo
+                  <div className="flex items-center gap-3">
+                    <span className="flex items-center gap-1 text-xs text-green-400">
+                      <DollarSign className="w-3 h-3" />
+                      {project.monthlyRevenuePotential}/mo
+                    </span>
+                    <span className="text-xs text-neutral-600">{project.buildWeek}</span>
                   </div>
                   <ArrowRight className="w-4 h-4 text-neutral-500 group-hover:text-brand-yellow group-hover:translate-x-1 transition-all" />
                 </div>
