@@ -6,6 +6,8 @@ import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Image from "next/image";
+import { blogPosts } from "@/lib/blog";
+import Link from "next/link";
 import {
   ArrowRight,
   Star,
@@ -17,6 +19,9 @@ import {
   Swords,
   Lightbulb,
   Users,
+  BookOpen,
+  CheckCircle2,
+  Circle,
 } from "lucide-react";
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
@@ -301,6 +306,46 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
 
+        {/* Build Timeline */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto max-w-4xl">
+            <div className="flex items-center gap-3 mb-8">
+              <CalendarDays className="w-7 h-7 text-brand-blue" />
+              <h2 className="text-3xl font-bold text-neutral-50">
+                Build Timeline
+              </h2>
+            </div>
+            <div className="flex items-center gap-0">
+              {[
+                { label: "Validate idea", done: project.status !== "upcoming" },
+                { label: "Design architecture", done: project.status !== "upcoming" },
+                { label: "Build MVP", done: project.status === "launched" || project.status === "in-progress" },
+                { label: "Launch & get users", done: project.status === "launched" },
+                { label: "Optimize revenue", done: project.status === "launched" },
+              ].map((step, i) => (
+                <div key={i} className="flex items-center flex-1">
+                  <div className="flex flex-col items-center text-center">
+                    {step.done ? (
+                      <CheckCircle2 className="w-8 h-8 text-green-400 mb-2" />
+                    ) : (
+                      <Circle className="w-8 h-8 text-neutral-700 mb-2" />
+                    )}
+                    <span className={`text-xs ${step.done ? "text-neutral-200" : "text-neutral-600"}`}>
+                      {step.label}
+                    </span>
+                  </div>
+                  {i < 4 && (
+                    <div className={`flex-1 h-0.5 mx-2 mt-[-1rem] ${step.done ? "bg-green-400/50" : "bg-neutral-800"}`} />
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Related Blog Posts */}
+        <RelatedBlogPosts projectTitle={project.title} projectNumber={project.number} />
+
         {/* Call to Action */}
         <section className="py-20 px-4">
           <div className="container mx-auto text-center">
@@ -355,5 +400,65 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         }}
       />
     </>
+  );
+}
+
+function RelatedBlogPosts({
+  projectTitle,
+}: {
+  projectTitle: string;
+  projectNumber: number;
+}) {
+  const titleWords = projectTitle.toLowerCase().split(" ");
+  const related = blogPosts
+    .filter((post) => {
+      const content = (post.title + " " + post.excerpt + " " + post.content).toLowerCase();
+      return titleWords.some((w) => w.length > 3 && content.includes(w));
+    })
+    .slice(0, 3);
+
+  if (related.length === 0) {
+    const fallback = blogPosts.slice(0, 2);
+    return <BlogPostCards posts={fallback} />;
+  }
+
+  return <BlogPostCards posts={related} />;
+}
+
+function BlogPostCards({ posts }: { posts: typeof blogPosts }) {
+  if (posts.length === 0) return null;
+
+  return (
+    <section className="py-16 px-4 bg-neutral-900/50">
+      <div className="container mx-auto max-w-4xl">
+        <div className="flex items-center gap-3 mb-8">
+          <BookOpen className="w-7 h-7 text-brand-yellow" />
+          <h2 className="text-3xl font-bold text-neutral-50">
+            Related from the Build Log
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {posts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group p-6 rounded-2xl border border-neutral-800 bg-neutral-900/50 hover:bg-neutral-900/80 transition-colors"
+            >
+              <div className="flex items-center gap-2 mb-3 text-xs text-neutral-500">
+                <span className="text-brand-yellow">{post.category}</span>
+                <span>·</span>
+                <span>{post.readTime}</span>
+              </div>
+              <h3 className="text-base font-semibold text-neutral-50 group-hover:text-brand-yellow transition-colors mb-2">
+                {post.title}
+              </h3>
+              <p className="text-sm text-neutral-400 line-clamp-2">
+                {post.excerpt}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

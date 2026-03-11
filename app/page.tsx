@@ -23,6 +23,8 @@ import { Header } from "@/components/Header";
 import { addDays, startOfDay, isBefore } from "date-fns";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Footer } from "@/components/Footer";
+import { ChallengeProgress } from "@/components/ChallengeProgress";
+import { LatestBlogPosts } from "@/components/LatestBlogPosts";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 
@@ -83,6 +85,9 @@ export default function LandingPage() {
 
           {/* Statistics Section */}
           <Statistics />
+
+          {/* Challenge Progress */}
+          <ChallengeProgress />
 
           {/* Project Tracker */}
           <section className="animate-fade-in">
@@ -277,6 +282,9 @@ export default function LandingPage() {
               </div>
             </div>
           </section>
+
+          {/* Latest Blog Posts */}
+          <LatestBlogPosts />
 
           {/* CTA Section */}
           <section className="text-center bg-gradient-to-r from-blue-700 to-blue-900 text-white py-16 rounded-2xl space-y-8 animate-fade-in">

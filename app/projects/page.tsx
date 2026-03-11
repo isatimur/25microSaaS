@@ -58,6 +58,45 @@ export default function ProjectsPage() {
           </div>
         </section>
 
+        {/* Revenue Summary */}
+        <section className="px-4 -mt-8">
+          <div className="container mx-auto">
+            <div className="overflow-hidden rounded-2xl border border-neutral-800">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-neutral-800/50 text-left">
+                    <th className="px-6 py-4 text-neutral-400 font-medium">Metric</th>
+                    <th className="px-6 py-4 text-neutral-400 font-medium">Launched</th>
+                    <th className="px-6 py-4 text-neutral-400 font-medium">Building</th>
+                    <th className="px-6 py-4 text-neutral-400 font-medium">Planned</th>
+                    <th className="px-6 py-4 text-neutral-400 font-medium">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t border-neutral-800">
+                    <td className="px-6 py-4 text-neutral-300">Projects</td>
+                    <td className="px-6 py-4 text-green-400 font-semibold">{launched.length}</td>
+                    <td className="px-6 py-4 text-yellow-400 font-semibold">{inProgress.length}</td>
+                    <td className="px-6 py-4 text-neutral-400 font-semibold">{upcoming.length}</td>
+                    <td className="px-6 py-4 text-neutral-50 font-bold">{projects.length}</td>
+                  </tr>
+                  <tr className="border-t border-neutral-800">
+                    <td className="px-6 py-4 text-neutral-300">Avg Revenue/mo</td>
+                    <td className="px-6 py-4 text-green-400">$2K–$8K</td>
+                    <td className="px-6 py-4 text-yellow-400">$2K–$6K</td>
+                    <td className="px-6 py-4 text-neutral-400">$2K–$10K</td>
+                    <td className="px-6 py-4 text-neutral-50 font-bold">$60K–$180K/yr</td>
+                  </tr>
+                  <tr className="border-t border-neutral-800">
+                    <td className="px-6 py-4 text-neutral-300">Revenue Model</td>
+                    <td className="px-6 py-4 text-neutral-300" colSpan={4}>Subscription · Pay-per-use · Tiered · Per-repo/seat</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
         {launched.length > 0 && (
           <ProjectSection title="Launched & Generating Revenue" projects={launched} />
         )}
