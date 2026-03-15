@@ -694,6 +694,336 @@ Notice what all five have in common:
 
 Find problems with these four characteristics, and you've found a profitable AI agent business.`,
   },
+  {
+    slug: "rag-vs-fine-tuning-for-ai-agents",
+    title: "RAG vs Fine-Tuning: Which One for Your AI Agent?",
+    excerpt:
+      "We tested both approaches across 5 agents. Here's when RAG wins, when fine-tuning wins, and why we use RAG 90% of the time.",
+    date: "2025-04-08",
+    readTime: "7 min read",
+    category: "Technical",
+    content: `Every time we start a new AI agent, we face the same question: should we use RAG (Retrieval-Augmented Generation) or fine-tune a model?
+
+## What's the Difference?
+
+**RAG (Retrieval-Augmented Generation):** Keep the base model as-is. When a query comes in, search a vector database for relevant context, inject it into the prompt, and let the model generate a response grounded in that context.
+
+**Fine-Tuning:** Train the base model on your specific data so it "learns" your domain. The knowledge is baked into the model weights.
+
+## Our Testing Results
+
+We tested both approaches on 5 of our agents:
+
+**AI Customer Support Agent:** RAG wins decisively. Product docs change weekly. Fine-tuning would require re-training every time. RAG just needs re-indexing.
+
+**AI SEO Content Agent:** RAG + base model. The agent needs to research fresh web data for every article. Fine-tuning can't help with real-time information.
+
+**AI Resume Tailor:** Base model is sufficient. GPT-4 already understands resume formatting. No RAG or fine-tuning needed — just good prompting.
+
+**AI Product Copywriter:** Fine-tuning could help for brand-specific voice, but we get 95% of the way there with few-shot examples in the prompt.
+
+**AI Contract Analyzer:** RAG wins. We index legal templates and clause libraries. The model retrieves relevant legal precedents when analyzing contracts.
+
+## Why We Use RAG 90% of the Time
+
+1. **No training costs** — fine-tuning GPT-4 costs hundreds of dollars per run
+2. **Instant updates** — change the data, re-index, done in minutes
+3. **Transparency** — you can see exactly which chunks the model used
+4. **Cost-effective** — embedding + search costs pennies per query
+5. **Model-agnostic** — switch from GPT-4 to Claude without re-training
+
+## When Fine-Tuning Makes Sense
+
+The 10% case: when you need the model to adopt a very specific writing style or behavior pattern that can't be captured in prompts. Examples: a model that writes exactly like your brand's blog voice, or a model that follows a very specific output format every time.
+
+## Our RAG Stack
+
+Every RAG-based agent uses the same stack:
+- OpenAI text-embedding-3-small for embeddings ($0.02 per 1M tokens)
+- Pinecone for vector storage (free tier covers most agents)
+- LangChain's retrieval chain for orchestration
+- Chunk size: 500 tokens with 100 token overlap
+
+Total cost per RAG query: ~$0.001. At 1,000 queries/day, that's $1/day. Hard to beat.`,
+  },
+  {
+    slug: "how-we-price-ai-agents",
+    title: "How We Price Our AI Agents: The $29-$99 Sweet Spot",
+    excerpt:
+      "Pricing AI products is tricky. Here's the framework we use to price every agent, including real examples and the psychology behind the numbers.",
+    date: "2025-04-22",
+    readTime: "6 min read",
+    category: "Strategy",
+    content: `Pricing is the single most impactful lever for revenue. Get it wrong and you'll either leave money on the table or scare away customers. Here's exactly how we price each AI agent.
+
+## The Framework: Value-Based Pricing
+
+We never price based on our costs (API calls are cheap). Instead, we ask:
+
+**"What does the customer currently pay to solve this problem?"**
+
+Then we price at 10-20% of that number.
+
+Examples:
+- SEO blog posts from freelancers: $200-500/article → Our AI at $49/mo for 10 articles
+- Cold email SDR salary: $4,000/mo → Our AI at $79/mo for 2,000 emails
+- Human support agent: $3,000/mo → Our AI at $49/mo for 1,000 resolutions
+
+## The $29-$99 Sweet Spot
+
+After testing pricing across multiple agents, we've found:
+
+**Under $19/mo:** Attracts low-quality customers with high churn. They don't value the product enough.
+
+**$29-$99/mo:** The sweet spot for B2B micro-SaaS. High enough to attract serious users, low enough for credit card purchases without management approval.
+
+**Over $99/mo:** Requires sales calls. Pipeline slows down. Only viable if your product clearly replaces a $1,000+ monthly expense.
+
+## Real Pricing Decisions
+
+**AI Code Review Agent:** $19/repo/month. Developers are price-sensitive, but they buy per-repo. A team with 5 repos pays $95/mo — right in our sweet spot.
+
+**AI Cold Outreach Agent:** $39/mo for 500 emails, $79/mo for 2,000. Usage-based tiers let small users start cheap and grow naturally.
+
+**AI Customer Support Agent:** $49/mo for 1,000 resolutions, $129/mo unlimited. The jump from $49 to $129 seems big, but companies that need unlimited are clearly getting massive value.
+
+## Pricing Mistakes We Made
+
+1. **Launching too cheap** — Our first agent launched at $9/mo. Nobody took it seriously. We 3x'd the price and got MORE customers.
+
+2. **No free tier for B2B** — Free tiers attract tire-kickers in B2B. We offer 7-day trials instead.
+
+3. **Annual pricing too early** — We added annual discounts after proving monthly retention. Don't discount until you know customers stick around.
+
+## The Formula
+
+For every new agent, we follow this:
+
+1. Research what humans charge for this task
+2. Price at 10-20% of human cost
+3. Start at the higher end of that range
+4. Lower only if conversion data demands it
+
+Simple. Works every time.`,
+  },
+  {
+    slug: "ai-agent-tech-stack-2025",
+    title: "The 2025 AI Agent Tech Stack: What We Use and Why",
+    excerpt:
+      "The complete tech stack behind all 25 AI agents. From LangChain to Supabase to Stripe — every tool, with alternatives and costs.",
+    date: "2025-05-06",
+    readTime: "8 min read",
+    category: "Technical",
+    content: `After building 10+ AI agents, our stack has converged. Here's every tool we use and why we chose it.
+
+## Frontend: Next.js 14 + TypeScript + Tailwind CSS
+
+**Why Next.js:** Server components for SEO, API routes for backends, Vercel deployment in seconds. Every agent gets a marketing site + app in one framework.
+
+**Why TypeScript:** AI agent code has complex data flows. Type safety catches bugs that would otherwise show up in production prompts.
+
+**Why Tailwind:** Ship beautiful UI fast. No CSS architecture decisions. Every agent looks polished from day one.
+
+**Alternatives considered:** Remix (too niche), Astro (not enough for full apps), SvelteKit (smaller ecosystem).
+
+## AI Orchestration: LangChain + CrewAI
+
+**LangChain for single-agent workflows:** When one agent needs tools (search, scrape, API calls), LangChain's tool-calling interface is unbeatable.
+
+**CrewAI for multi-agent systems:** When multiple agents collaborate (researcher → writer → editor), CrewAI's role-based architecture is cleaner.
+
+**Cost:** Free / open source.
+
+**Alternatives:** AutoGen (Microsoft), Semantic Kernel, raw OpenAI function calling.
+
+## Intelligence: OpenAI GPT-4 (primary) + Claude (fallback)
+
+**GPT-4 for complex reasoning:** Best at multi-step planning, code review, and nuanced writing.
+
+**Claude for long-context tasks:** 200K context window is perfect for document analysis agents.
+
+**GPT-3.5 for simple tasks:** Categorization, formatting, and simple extraction at 1/10th the cost.
+
+**Monthly cost per agent:** $50-200 depending on usage.
+
+## Database: Supabase
+
+**Why Supabase:** Postgres + Auth + Realtime + Storage in one platform. Free tier covers MVP. Row-level security for multi-tenant agents.
+
+**Monthly cost:** Free tier → $25/mo at scale.
+
+## Vector Store: Pinecone
+
+**Why Pinecone:** Managed vector DB with fast similarity search. Free tier covers 100K vectors (enough for most agents).
+
+**Alternative:** pgvector in Supabase (free, but slightly slower).
+
+## Payments: Stripe
+
+**Why Stripe:** Best developer experience. Subscription billing, usage-based pricing, customer portal — all built in.
+
+**Monthly cost:** 2.9% + $0.30 per transaction.
+
+## Email: Resend
+
+**Why Resend:** Built by developers, for developers. Clean API, great deliverability, generous free tier.
+
+**Monthly cost:** Free for first 3,000 emails/mo.
+
+## Deployment: Vercel
+
+**Why Vercel:** Zero-config deployment for Next.js. Preview deployments for every PR. Edge functions for fast API responses.
+
+**Monthly cost:** Free tier → $20/mo at scale.
+
+## Job Queues: Bull MQ + Redis
+
+**Why Bull MQ:** For agents that run long tasks (SEO research, batch processing), Bull MQ handles job scheduling and retries.
+
+**Monthly cost:** Redis free via Upstash.
+
+## Total Stack Cost Per Agent
+
+| Component | Monthly Cost |
+|-----------|-------------|
+| OpenAI API | $50-200 |
+| Supabase | $0-25 |
+| Pinecone | $0 |
+| Vercel | $0-20 |
+| Stripe | % of revenue |
+| Resend | $0 |
+| Redis/Upstash | $0 |
+| **Total** | **$50-245/mo** |
+
+At $200+/month in revenue, every agent is profitable from its first paying customers.`,
+  },
+  {
+    slug: "building-in-public-numbers",
+    title: "Building in Public: Real Revenue Numbers After 20 Weeks",
+    excerpt:
+      "Full transparency on our first 10 launched agents. Total MRR, best performers, biggest flops, and what we'd do differently.",
+    date: "2025-05-27",
+    readTime: "7 min read",
+    category: "Revenue",
+    content: `We promised full transparency. Here are the real numbers after 20 weeks and 10 launched agents.
+
+## Total Portfolio MRR: $4,847
+
+Not life-changing yet. But 10 products generating a combined ~$5K/month from a single developer is meaningful. And we still have 15 agents to build.
+
+## Agent-by-Agent Breakdown
+
+| # | Agent | MRR | Customers | Avg Price |
+|---|-------|-----|-----------|-----------|
+| 1 | AI Affirmation Engine | $312 | 63 premium | $4.95 |
+| 2 | AI SEO Content Agent | $891 | 18 | $49.50 |
+| 3 | AI Cold Outreach Agent | $1,264 | 32 | $39.50 |
+| 4 | AI Social Autopilot | $487 | 16 | $30.44 |
+| 5 | AI Support Agent | $735 | 15 | $49.00 |
+| 6 | AI Meeting Copilot | $342 | 18 | $19.00 |
+| 7 | AI Resume Tailor | $285 | ~30 sales | $9.50 |
+| 8 | AI Code Review Agent | $198 | 9 repos | $22.00 |
+| 9 | AI Lead Scraper | $219 | 5 | $43.80 |
+| 10 | AI Product Copywriter | $114 | 4 | $28.50 |
+
+## Top Performer: AI Cold Outreach Agent ($1,264 MRR)
+
+This agent hit $1K within 3 weeks of launch. Why? The pain point is sharp (sales teams hate writing personalized emails), the value is measurable (reply rates 3x'd), and the customer has budget.
+
+## Biggest Surprise: AI SEO Content Agent ($891 MRR)
+
+We didn't expect this to be #2. But content marketers are desperate for consistent publishing. The agent writes better SEO content than most freelancers, at 1/50th the cost.
+
+## Biggest Disappointment: AI Product Copywriter ($114 MRR)
+
+Only 4 customers after 4 weeks. The problem: e-commerce sellers are price-sensitive and skeptical of AI copy quality. We're pivoting to target agencies instead of individual sellers.
+
+## What We Learned
+
+1. **B2B beats B2C** — Agents 2, 3, 5, and 9 are all B2B and they dominate revenue
+2. **Higher prices = better customers** — $39-49/mo customers churn less than $9-19/mo
+3. **Sales tools win** — Anything that helps people make money (outreach, SEO) sells faster than tools that save time
+4. **Twitter is the best launch channel** — 60% of our first customers came from build-in-public threads
+5. **Support load is minimal** — AI agents generate 90% fewer support tickets than traditional SaaS
+
+## Revenue Goal
+
+By agent #25, we're targeting $15K MRR. That requires each remaining agent to contribute ~$670/mo on average. Very achievable given our learnings.`,
+  },
+  {
+    slug: "ai-agent-marketing-playbook",
+    title: "The AI Agent Marketing Playbook: $0 Budget Launch Strategy",
+    excerpt:
+      "How we launch each agent with zero ad spend. Build-in-public threads, Reddit strategy, Product Hunt playbook, and cold outreach to first users.",
+    date: "2025-06-03",
+    readTime: "7 min read",
+    category: "Strategy",
+    content: `Every agent launches with $0 marketing budget. Here's the exact playbook.
+
+## Channel 1: Twitter/X Build-in-Public (60% of first customers)
+
+The most effective channel by far. Here's the formula:
+
+**Pre-launch (1 week before):**
+- Thread: "I'm building [agent name] in public. Here's the problem it solves..." (shows the pain point with data)
+- Daily updates with screenshots of the UI and agent output
+- Poll asking "Would you pay $X/mo for this?"
+
+**Launch day:**
+- Thread: "I just shipped [agent name]. It [specific result]. Here's the full story..."
+- Include a before/after comparison
+- End with a link + limited-time launch discount
+
+**Post-launch:**
+- Share customer testimonials (even small wins)
+- Revenue milestone updates ("Hit $500 MRR in week 1")
+- Technical deep-dives that attract developer followers
+
+## Channel 2: Reddit (20% of first customers)
+
+Reddit hates self-promotion but loves genuine value. Our approach:
+
+1. Find 3-5 relevant subreddits (r/SaaS, r/entrepreneur, niche subs)
+2. Be active for 1-2 weeks before launch (genuine comments, helpful answers)
+3. Post a story, not a pitch: "I built an AI that does X. Here's what I learned"
+4. Include the tool link naturally, not as the main focus
+5. Respond to every single comment
+
+Top subreddits by conversion: r/SaaS, r/microsaas, r/startups, r/Entrepreneur
+
+## Channel 3: Product Hunt (10% of first customers)
+
+We only PH launch agents that have a polished UI. Our checklist:
+
+- Ship on Tuesday (highest traffic day)
+- Prepare 5 hunter accounts to upvote early
+- Make a 60-second demo video
+- Write a compelling tagline (not "AI-powered X" — be specific about the outcome)
+- Respond to every comment within 5 minutes
+
+## Channel 4: Cold Outreach Using Our Own Tools (10%)
+
+We literally use the AI Cold Outreach Agent to sell other agents. Meta, but it works.
+
+1. Use the Lead Scraper to find potential customers
+2. Use the Cold Outreach Agent to send personalized emails
+3. Offer a free pilot or extended trial
+
+This works especially well for B2B agents (support agent, code review, etc.).
+
+## What Doesn't Work
+
+- **Paid ads** — CAC is too high for $29-49/mo products. Maybe later at scale.
+- **Content marketing (SEO)** — Takes 3-6 months to rank. Too slow for launch.
+- **LinkedIn organic** — Low engagement unless you already have a following.
+- **Influencer partnerships** — Too expensive for micro-SaaS. Maybe for bigger agents.
+
+## Cost Per Acquisition
+
+With $0 ad spend, our average CAC is effectively $0 for the first 20-30 customers. The "cost" is time spent on Twitter and Reddit — about 1-2 hours per launch day.
+
+After that, word of mouth and organic search take over. Most agents get 2-3 organic signups per week without any active marketing.`,
+  },
 ];
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {

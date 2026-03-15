@@ -1,12 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Newsletter } from "@/components/Newsletter";
 import { projects } from "@/lib/projects";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Loader2, Clock, DollarSign } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2, Clock, DollarSign, Search } from "lucide-react";
 
 const statusConfig = {
   launched: { label: "Launched", icon: CheckCircle2, color: "text-green-400 bg-green-400/10 border-green-400/20" },
@@ -15,9 +16,22 @@ const statusConfig = {
 };
 
 export default function ProjectsPage() {
-  const launched = projects.filter((p) => p.status === "launched");
-  const inProgress = projects.filter((p) => p.status === "in-progress");
-  const upcoming = projects.filter((p) => p.status === "upcoming");
+  const [query, setQuery] = useState("");
+  const [filter, setFilter] = useState<"all" | "launched" | "in-progress" | "upcoming">("all");
+
+  const filtered = projects.filter((p) => {
+    const matchesQuery =
+      query === "" ||
+      p.title.toLowerCase().includes(query.toLowerCase()) ||
+      p.type.toLowerCase().includes(query.toLowerCase()) ||
+      p.tagline.toLowerCase().includes(query.toLowerCase());
+    const matchesFilter = filter === "all" || p.status === filter;
+    return matchesQuery && matchesFilter;
+  });
+
+  const launched = filtered.filter((p) => p.status === "launched");
+  const inProgress = filtered.filter((p) => p.status === "in-progress");
+  const upcoming = filtered.filter((p) => p.status === "upcoming");
 
   const totalRevenue = "$60K–$180K/yr";
 
@@ -54,6 +68,47 @@ export default function ProjectsPage() {
               <span className="flex items-center gap-2 text-neutral-400">
                 <Clock className="w-4 h-4" /> {upcoming.length} Planned
               </span>
+            </div>
+          </div>
+        </section>
+
+        {/* Search & Filter */}
+        <section className="px-4 -mt-10 relative z-10">
+          <div className="container mx-auto max-w-3xl">
+            <div className="p-4 rounded-2xl border border-neutral-800 bg-neutral-900/90 backdrop-blur-sm space-y-4">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
+                <input
+                  type="text"
+                  placeholder="Search agents by name, type, or tagline..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-neutral-800/50 border border-neutral-700 text-neutral-100 placeholder:text-neutral-500 focus:outline-none focus:border-brand-blue text-sm"
+                />
+              </div>
+              <div className="flex gap-2">
+                {(["all", "launched", "in-progress", "upcoming"] as const).map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setFilter(f)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                      filter === f
+                        ? "bg-brand-blue text-white"
+                        : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"
+                    }`}
+                  >
+                    {f === "all" ? "All" : f === "launched" ? "Launched" : f === "in-progress" ? "Building" : "Planned"}
+                  </button>
+                ))}
+                {(query || filter !== "all") && (
+                  <button
+                    onClick={() => { setQuery(""); setFilter("all"); }}
+                    className="px-3 py-1.5 rounded-lg text-xs text-red-400 hover:bg-red-400/10 transition-colors ml-auto"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </section>
