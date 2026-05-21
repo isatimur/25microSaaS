@@ -110,6 +110,34 @@ export default function BlogPostPage({
                     </div>
                   );
                 }
+                if (trimmed.startsWith("```")) {
+                  const lines = trimmed.split("\n");
+                  const lang = lines[0].replace("```", "").trim();
+                  const code = lines.slice(1, -1).join("\n");
+                  return (
+                    <div key={index} className="my-6 rounded-xl overflow-hidden border border-neutral-800">
+                      {lang && (
+                        <div className="px-4 py-2 bg-neutral-800/80 text-xs text-neutral-400 font-mono">
+                          {lang}
+                        </div>
+                      )}
+                      <pre className="p-4 bg-neutral-900/80 overflow-x-auto text-sm">
+                        <code className="text-neutral-300 font-mono">{code}</code>
+                      </pre>
+                    </div>
+                  );
+                }
+                if (trimmed.startsWith("> ")) {
+                  const quoteText = trimmed.replace(/^> /gm, "");
+                  return (
+                    <blockquote
+                      key={index}
+                      className="my-6 pl-6 border-l-4 border-brand-yellow/50 italic text-neutral-300"
+                    >
+                      {quoteText}
+                    </blockquote>
+                  );
+                }
                 if (trimmed.startsWith("- ") || trimmed.startsWith("1. ")) {
                   const items = trimmed.split("\n");
                   return (
@@ -119,7 +147,7 @@ export default function BlogPostPage({
                           key={ii}
                           className="text-neutral-300 pl-4 border-l-2 border-brand-yellow/30"
                         >
-                          {item.replace(/^[-\d.]\s*/, "").replace(/\*\*(.*?)\*\*/g, "$1")}
+                          <InlineFormatted text={item.replace(/^[-\d.]\s*/, "")} />
                         </li>
                       ))}
                     </ul>
@@ -128,7 +156,7 @@ export default function BlogPostPage({
                 if (!trimmed) return null;
                 return (
                   <p key={index} className="text-neutral-300 leading-relaxed mb-6">
-                    {trimmed}
+                    <InlineFormatted text={trimmed} />
                   </p>
                 );
               })}
@@ -166,6 +194,34 @@ export default function BlogPostPage({
         </article>
       </main>
       <Footer />
+    </>
+  );
+}
+
+function InlineFormatted({ text }: { text: string }) {
+  const parts = text.split(/(\*\*.*?\*\*|`[^`]+`)/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (part.startsWith("**") && part.endsWith("**")) {
+          return (
+            <strong key={i} className="text-neutral-50 font-semibold">
+              {part.slice(2, -2)}
+            </strong>
+          );
+        }
+        if (part.startsWith("`") && part.endsWith("`")) {
+          return (
+            <code
+              key={i}
+              className="px-1.5 py-0.5 rounded bg-neutral-800 text-brand-yellow text-sm font-mono"
+            >
+              {part.slice(1, -1)}
+            </code>
+          );
+        }
+        return <span key={i}>{part}</span>;
+      })}
     </>
   );
 }

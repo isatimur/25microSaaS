@@ -25,6 +25,7 @@ import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Footer } from "@/components/Footer";
 import { ChallengeProgress } from "@/components/ChallengeProgress";
 import { LatestBlogPosts } from "@/components/LatestBlogPosts";
+import { Testimonials } from "@/components/Testimonials";
 import Link from "next/link";
 import { projects } from "@/lib/projects";
 
@@ -282,6 +283,9 @@ export default function LandingPage() {
               </div>
             </div>
           </section>
+
+          {/* Testimonials */}
+          <Testimonials />
 
           {/* Latest Blog Posts */}
           <LatestBlogPosts />
