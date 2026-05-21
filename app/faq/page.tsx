@@ -1,42 +1,51 @@
 "use client";
 
 import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Newsletter } from "@/components/Newsletter";
 
 const faqs = [
   {
-    question: "What is the 25 MicroSaaS Challenge?",
-    answer: "The 25 MicroSaaS Challenge is a 50-week program where participants build and launch 25 micro-SaaS projects. Each project is designed to teach valuable skills in development, design, and business while building a portfolio of real products."
+    question: "What is an AI agent, and how is it different from a chatbot?",
+    answer:
+      "AI agents are autonomous systems that can plan, research, and execute multi-step tasks independently. Unlike chatbots that just respond to prompts, agents use tools (APIs, web scraping, databases) to take real actions — like writing and publishing a blog post, screening 100 resumes, or monitoring competitors 24/7.",
   },
   {
-    question: "Do I need to be an experienced programmer?",
-    answer: "No, you don't need to be an experienced programmer. The challenge is designed for developers of all skill levels. We provide resources, guidance, and a supportive community to help you succeed regardless of your starting point."
+    question: "Can each project really generate $200+/month?",
+    answer:
+      "Yes. Every project targets a specific business pain point where companies currently pay $500–$5,000/month for human labor. An AI agent that replaces even a fraction of that is easily worth $200+/month. We validate demand before building and document revenue from day one.",
   },
   {
-    question: "How much time do I need to commit?",
-    answer: "We recommend dedicating 10-15 hours per week to the challenge. However, you can adjust this based on your schedule and goals. The bi-weekly project cycle gives you flexibility in managing your time."
+    question: "What tech stack do you use to build these agents?",
+    answer:
+      "Next.js + TypeScript for the web app, LangChain or CrewAI for agent orchestration, OpenAI GPT-4 (or Claude/open-source models) for intelligence, Supabase for the database, Pinecone for RAG, Stripe for payments, and Vercel for deployment. Each agent is a full-stack SaaS product.",
   },
   {
-    question: "What kind of support is available?",
-    answer: "You'll have access to a supportive community, bi-weekly live Q&A sessions, detailed project guides, code reviews, and a resource library. We also provide technical support and business guidance throughout your journey."
+    question: "How do the AI agents make money?",
+    answer:
+      "Each agent uses one of these proven models: monthly subscriptions ($19–$99/mo), pay-per-use ($9.99/task), tiered usage-based pricing, or per-seat/per-repo pricing. We chose the model that best matches customer expectations for each niche.",
   },
   {
-    question: "Can I use any programming language or framework?",
-    answer: "Yes, you can use any programming language or framework you're comfortable with. We provide recommendations and resources for popular choices, but the final decision is yours."
+    question: "Are these open-source?",
+    answer:
+      "Build logs, architecture decisions, and key learnings are shared publicly. The codebase for each project is documented in detail. Some agents may be open-sourced after they've validated revenue. Subscribe to the newsletter for early access.",
   },
   {
-    question: "What happens after I complete a project?",
-    answer: "After completing each project, you'll have the opportunity to launch it, receive feedback from the community, and optionally monetize it. Each project becomes part of your portfolio and can potentially generate passive income."
+    question: "What's the cost to run each AI agent?",
+    answer:
+      "Most agents cost $50–$200/month in infrastructure (OpenAI API, Supabase, Vercel, etc.). With $200+/month in revenue, every agent is profitable from its first paying customers. We document exact unit economics for each project.",
   },
   {
-    question: "Is there a cost to participate?",
-    answer: "The basic challenge participation is free. However, we offer a premium tier with additional benefits like 1-on-1 mentoring, advanced workshops, and exclusive resources."
+    question: "How long does it take to build each agent?",
+    answer:
+      "Two weeks per agent: Week 1 is architecture, core AI logic, and MVP. Week 2 is payment integration, landing page, launch, and first customers. Speed is the point — we ship fast and iterate based on real customer feedback.",
   },
   {
-    question: "Can I join at any time?",
-    answer: "Yes, you can join the challenge at any time. While we have scheduled cohorts, you can start your journey whenever you're ready and work at your own pace."
-  }
+    question: "Can I build along with you?",
+    answer:
+      "Absolutely! Subscribe to the newsletter for weekly build logs with architecture diagrams, code snippets, and the exact playbook we use. Many subscribers are building their own AI agents following our process.",
+  },
 ];
 
 export default function FAQPage() {
@@ -52,7 +61,7 @@ export default function FAQPage() {
               Frequently Asked Questions
             </h1>
             <p className="text-xl md:text-2xl text-neutral-200 max-w-3xl mx-auto">
-              Everything you need to know about the 25 MicroSaaS Challenge.
+              Everything you need to know about building AI agents that make money.
             </p>
           </div>
         </section>
@@ -69,9 +78,7 @@ export default function FAQPage() {
                   <h3 className="text-xl font-semibold mb-4 text-neutral-50">
                     {faq.question}
                   </h3>
-                  <p className="text-neutral-300">
-                    {faq.answer}
-                  </p>
+                  <p className="text-neutral-300">{faq.answer}</p>
                 </div>
               ))}
             </div>
@@ -86,7 +93,7 @@ export default function FAQPage() {
                 Still Have Questions?
               </h2>
               <p className="text-xl text-center text-neutral-400 mb-8">
-                Subscribe to our newsletter to get regular updates and answers to your questions.
+                Subscribe and reply to any email — we read and respond to every message.
               </p>
               <div className="mt-8">
                 <Newsletter />
@@ -95,6 +102,7 @@ export default function FAQPage() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
-} 
+}

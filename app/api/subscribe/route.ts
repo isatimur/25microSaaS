@@ -8,7 +8,6 @@ export async function POST(request: Request) {
   try {
     const { email } = await request.json();
 
-    // Validate email
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json(
         { error: 'Invalid email address' },
@@ -16,19 +15,23 @@ export async function POST(request: Request) {
       );
     }
 
-    // Save to database using server action
     await subscribeToNewsletter(email);
 
-    // Send welcome email
     await resend.emails.send({
-      from: 'MicroSaaS Challenge <challenge@25microsaas.com>',
+      from: 'AI Agent Challenge <challenge@25microsaas.com>',
       to: email,
-      subject: 'Welcome to the MicroSaaS Challenge!',
+      subject: 'Welcome to the AI Agent Challenge!',
       html: `
-        <h1>Welcome to the MicroSaaS Challenge!</h1>
-        <p>Thank you for joining our community of builders and entrepreneurs.</p>
-        <p>You'll receive bi-weekly project prompts and updates about the challenge.</p>
-        <p>Get ready to start building your micro-SaaS empire!</p>
+        <h1>Welcome to the AI Agent Challenge!</h1>
+        <p>You're now following our journey building 25 autonomous AI agents in 50 weeks.</p>
+        <p>Every two weeks, we ship a new AI agent designed to generate $200+/month in real revenue.</p>
+        <p>You'll get:</p>
+        <ul>
+          <li>Weekly build logs with architecture and code</li>
+          <li>Revenue numbers and unit economics</li>
+          <li>Lessons learned and what we'd do differently</li>
+        </ul>
+        <p>Let's build AI that makes money.</p>
       `,
     });
 
@@ -49,4 +52,4 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
-} 
+}
